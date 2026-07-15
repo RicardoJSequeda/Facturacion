@@ -18,13 +18,15 @@
         extend: {
           colors: {
             brand: {
-              ink: '#1C2127',
-              'ink-light': '#2A313A',
-              accent: '#E8590C',
-              'accent-dark': '#C64A08',
-              steel: '#4A6577',
-              paper: '#F5F1E8',
-              border: '#E3DCCB'
+              ink: '#0F172A',         /* Slate 900 para textos de alto contraste */
+              'ink-light': '#334155',   /* Slate 700 */
+              accent: '#EA580C',       /* Orange 600 - Acento principal y enérgico */
+              'accent-dark': '#C2410C',  /* Orange 700 - Hover de acentos */
+              'accent-soft': '#FFF3EB',  /* Naranja pastel para selección activa */
+              steel: '#64748B',        /* Slate 500 para detalles secundarios */
+              paper: '#F8FAFC',        /* Slate 50 - Fondo general claro y relajante */
+              border: '#E2E8F0',       /* Slate 200 - Bordes sumamente sutiles */
+              sidebar: '#F1F5F9'       /* Slate 100 - Fondo de barra lateral claro */
             }
           },
           fontFamily: {
@@ -39,21 +41,21 @@
   
   <style>
     body {
-      background-color: #F5F1E8;
+      background-color: #F8FAFC;
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #F5F1E8;
+      background: #F8FAFC;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #7C93A0;
+      background: #CBD5E1;
       border-radius: 4px;
     }
     
-    /* Configuración para impresión física térmica u oficio */
+    /* Configuración limpia para impresión física dual */
     @media print {
       body * {
         visibility: hidden;
@@ -72,96 +74,97 @@
     }
   </style>
 </head>
-<body class="font-sans text-slate-800 antialiased h-screen overflow-hidden">
+<body class="font-sans text-brand-ink-light antialiased h-screen overflow-hidden">
 
   <div class="flex h-full w-full">
     
-    <!-- ============================= SIDEBAR LATERAL ============================= -->
-    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-brand-ink text-stone-200 flex flex-col justify-between transition-transform duration-300 transform -translate-x-full lg:translate-x-0 lg:static lg:inset-0 border-r border-stone-800 shrink-0">
+    <!-- ============================= SIDEBAR LATERAL CLARO ============================= -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-brand-sidebar text-brand-ink flex flex-col justify-between transition-transform duration-300 transform -translate-x-full lg:translate-x-0 lg:static lg:inset-0 border-r border-brand-border shrink-0">
       <div>
         <!-- Brand Header -->
-        <div class="flex items-center gap-3 p-5 border-b border-stone-800">
-          <div class="p-2 bg-brand-accent rounded-lg text-white">
+        <div class="flex items-center gap-3 p-5 border-b border-brand-border">
+          <div class="p-2 bg-brand-accent rounded-lg text-white shadow-sm">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
             </svg>
           </div>
           <div>
-            <h1 class="font-display font-bold text-lg text-white tracking-wider leading-none">SIGEF</h1>
-            <span class="text-xs text-stone-500 uppercase font-semibold tracking-widest">Sist. Ferretero</span>
+            <h1 class="font-display font-bold text-lg text-brand-ink tracking-wider leading-none">SIGEF</h1>
+            <span class="text-xs text-brand-steel uppercase font-semibold tracking-widest">Sist. Ferretero</span>
           </div>
         </div>
 
-        <!-- Navegación -->
+        <!-- Navegación Clara -->
         <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-160px)] custom-scrollbar">
-          <div class="px-3 mb-2 text-xs font-bold text-stone-500 uppercase tracking-wider">Operación</div>
-          <button data-view="dashboard" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition active-btn">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 14a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"></path></svg>
+          <div class="px-3 mb-2 text-xs font-bold text-brand-steel uppercase tracking-wider">Operación</div>
+          <button data-view="dashboard" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition active-btn">
+            <svg class="w-5 h-5 text-brand-steel" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 14a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"></path></svg>
             Panel General
           </button>
-          <button data-view="pos" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+          <button data-view="pos" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition">
+            <svg class="w-5 h-5 text-brand-steel" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             Facturación POS
           </button>
-          <button data-view="facturas" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          <button data-view="facturas" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition">
+            <svg class="w-5 h-5 text-brand-steel" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
             Historial Facturas
           </button>
 
-          <div class="px-3 mt-5 mb-2 text-xs font-bold text-stone-500 uppercase tracking-wider">Inventario</div>
-          <button data-view="inventario" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+          <div class="px-3 mt-5 mb-2 text-xs font-bold text-brand-steel uppercase tracking-wider">Inventario</div>
+          <button data-view="inventario" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition">
+            <svg class="w-5 h-5 text-brand-steel" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
             Productos (Stock)
           </button>
-          <button data-view="categorias" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>Categorías
+          <button data-view="categorias" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition">
+            <svg class="w-5 h-5 text-brand-steel" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>Categorías
           </button>
-          <button data-view="compras" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
+          <button data-view="compras" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>
             Suministros (Ingresos)
           </button>
 
-          <div class="px-3 mt-5 mb-2 text-xs font-bold text-stone-500 uppercase tracking-wider">Directorio</div>
-          <button data-view="clientes" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+          <div class="px-3 mt-5 mb-2 text-xs font-bold text-brand-steel uppercase tracking-wider">Directorio</div>
+          <button data-view="clientes" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition">
+            <svg class="w-5 h-5 text-brand-steel" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             Clientes (Cartera)
           </button>
-          <button data-view="proveedores" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          <button data-view="proveedores" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition">
+            <svg class="w-5 h-5 text-brand-steel" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             Proveedores
           </button>
 
-          <div class="px-3 mt-5 mb-2 text-xs font-bold text-stone-500 uppercase tracking-wider">Análisis y Backup</div>
-          <button data-view="reportes" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"></path></svg>
+          <div class="px-3 mt-5 mb-2 text-xs font-bold text-brand-steel uppercase tracking-wider">Análisis y Backup</div>
+          <button data-view="reportes" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition">
+            <svg class="w-5 h-5 text-brand-steel" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"></path></svg>
             Reportes Gerenciales
           </button>
-          <button data-view="config" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          <button data-view="config" class="nav-btn flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold rounded-lg text-brand-ink-light hover:text-brand-ink hover:bg-slate-200 transition">
+            <svg class="w-5 h-5 text-brand-steel" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
             Configuración & Backup
           </button>
         </nav>
       </div>
-      <div class="p-4 border-t border-stone-800 text-xs text-stone-500 font-medium">
-        Ferretería Urabá v2.5 · Estable
+      <div class="p-4 border-t border-brand-border text-xs text-brand-steel font-medium">
+        SIGEF v2.8 · Licencia Activa
       </div>
     </aside>
 
     <!-- Fondo opaco móvil para sidebar -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden"></div>
 
     <!-- ============================= CONTENIDO PRINCIPAL ============================= -->
     <main class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
       
+      <!-- Topbar Clara -->
       <header class="h-16 shrink-0 bg-white border-b border-brand-border flex items-center justify-between px-6 z-10">
         <div class="flex items-center gap-4">
-          <button id="hamburger-menu" class="lg:hidden p-1.5 hover:bg-stone-100 rounded-md transition text-slate-800">
+          <button id="hamburger-menu" class="lg:hidden p-1.5 hover:bg-slate-100 rounded-md transition text-slate-800">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </button>
           <div>
-            <h2 id="viewTitle" class="font-display font-bold text-xl text-brand-ink">Panel General</h2>
-            <p id="viewDate" class="text-xs text-slate-500 font-medium"></p>
+            <h2 id="viewTitle" class="font-display font-bold text-lg text-brand-ink">Panel General</h2>
+            <p id="viewDate" class="text-xs text-brand-steel font-semibold"></p>
           </div>
         </div>
         <div>
@@ -172,44 +175,43 @@
         </div>
       </header>
 
-      <!-- Contenedor de Vistas Desplazable -->
       <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
 
         <!-- ---------------- SECCIÓN 1: DASHBOARD (PANEL) ---------------- -->
         <section id="view-dashboard" class="view space-y-6">
           <!-- Tarjetas KPI -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-32">
-              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-brand-accent"></div>
+            <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-32 hover:shadow-md transition">
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand-accent"></div>
               <div>
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Ventas de Hoy</span>
+                <span class="text-xs font-bold text-brand-steel uppercase tracking-wider">Ventas de Hoy</span>
                 <p id="kpiVentasHoy" class="font-display font-bold text-2xl text-brand-ink mt-1">$0</p>
               </div>
-              <p id="kpiFacturasHoy" class="text-xs text-slate-400 font-semibold">0 facturas procesadas</p>
+              <p id="kpiFacturasHoy" class="text-xs text-brand-steel font-semibold">0 facturas procesadas</p>
             </div>
-            <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-32">
-              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-brand-steel"></div>
+            <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-32 hover:shadow-md transition">
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500"></div>
               <div>
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Ventas del Mes</span>
+                <span class="text-xs font-bold text-brand-steel uppercase tracking-wider">Ventas del Mes</span>
                 <p id="kpiVentasMes" class="font-display font-bold text-2xl text-brand-ink mt-1">$0</p>
               </div>
-              <p id="kpiFacturasMes" class="text-xs text-slate-400 font-semibold">Acumulado mensual</p>
+              <p id="kpiFacturasMes" class="text-xs text-brand-steel font-semibold">Acumulado mensual</p>
             </div>
-            <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-32">
-              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-red-500"></div>
+            <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-32 hover:shadow-md transition">
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500"></div>
               <div>
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Stock Bajo / Crítico</span>
+                <span class="text-xs font-bold text-brand-steel uppercase tracking-wider">Stock Bajo / Crítico</span>
                 <p id="kpiStockBajo" class="font-display font-bold text-2xl text-brand-ink mt-1">0</p>
               </div>
-              <p class="text-xs text-red-500 font-semibold">Artículos que requieren recompra</p>
+              <p class="text-xs text-amber-600 font-semibold">Artículos que requieren reposición</p>
             </div>
-            <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-32">
-              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-emerald-600"></div>
+            <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-32 hover:shadow-md transition">
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500"></div>
               <div>
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Valor total del Inventario</span>
+                <span class="text-xs font-bold text-brand-steel uppercase tracking-wider">Valor total del Inventario</span>
                 <p id="kpiValorInv" class="font-display font-bold text-2xl text-brand-ink mt-1">$0</p>
               </div>
-              <p id="kpiTotalProductos" class="text-xs text-slate-400 font-semibold">0 referencias activas</p>
+              <p id="kpiTotalProductos" class="text-xs text-brand-steel font-semibold">0 referencias activas</p>
             </div>
           </div>
 
@@ -217,13 +219,13 @@
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="bg-white border border-brand-border rounded-xl shadow-sm p-5 lg:col-span-2">
               <h3 class="font-display font-bold text-sm uppercase text-brand-ink tracking-wider mb-4">Ventas de los Últimos 7 Días</h3>
-              <div class="flex items-end gap-3 h-48 border-b border-stone-200 pb-2 px-2" id="salesBars">
+              <div class="flex items-end gap-3 h-48 border-b border-brand-border pb-2 px-2" id="salesBars">
                 <!-- Se inyecta dinámicamente con JS -->
               </div>
             </div>
-            <div class="bg-white border border-brand-border rounded-xl shadow-sm p-5">
+            <div class="bg-white border border-brand-border rounded-xl shadow-sm p-5 flex flex-col">
               <h3 class="font-display font-bold text-sm uppercase text-brand-ink tracking-wider mb-4">Alertas Críticas de Stock</h3>
-              <div class="overflow-y-auto max-h-48 custom-scrollbar space-y-2" id="lowStockTable">
+              <div class="overflow-y-auto max-h-48 custom-scrollbar space-y-2 flex-1" id="lowStockTable">
                 <!-- Se inyecta dinámicamente -->
               </div>
             </div>
@@ -235,7 +237,7 @@
               <h3 class="font-display font-bold text-sm uppercase text-brand-ink tracking-wider">Historial Reciente de Facturas</h3>
               <button class="text-xs font-bold text-brand-accent hover:underline flex items-center gap-1" onclick="document.querySelector('[data-view=facturas]').click()">Ver todas →</button>
             </div>
-            <div class="overflow-x-auto rounded-lg border border-stone-200" id="recentInvoicesTable">
+            <div class="overflow-x-auto rounded-lg border border-brand-border" id="recentInvoicesTable">
               <!-- Se inyecta dinámicamente -->
             </div>
           </div>
@@ -250,14 +252,14 @@
               <!-- Barra de herramientas POS -->
               <div class="bg-white border border-brand-border rounded-xl p-4 shadow-sm flex flex-col md:flex-row gap-4 items-center">
                 <div class="relative w-full">
-                  <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                  <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-brand-steel">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                   </span>
-                  <input id="posSearch" type="text" class="w-full pl-9 pr-4 py-2 border border-brand-border rounded-lg text-sm bg-stone-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition" placeholder="Buscar por descripción, categoría o código de barras (F4)...">
+                  <input id="posSearch" type="text" class="w-full pl-9 pr-4 py-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition" placeholder="Buscar por descripción, categoría o código de barras (F4)...">
                 </div>
-                <div class="flex items-center gap-2 shrink-0 text-xs bg-brand-paper/50 px-3 py-2 rounded-lg border border-brand-border font-medium text-slate-600">
-                  <span class="w-2.5 h-2.5 bg-brand-accent rounded-full animate-ping"></span>
-                  Lector de barras activo
+                <div class="flex items-center gap-2 shrink-0 text-xs bg-brand-accent-soft px-3 py-2 rounded-lg border border-orange-100 font-semibold text-brand-accent">
+                  <span class="w-2 h-2 bg-brand-accent rounded-full animate-pulse"></span>
+                  Buscador optimizado
                 </div>
               </div>
 
@@ -272,46 +274,46 @@
             <div class="xl:col-span-5">
               <div class="bg-white border border-brand-border rounded-xl shadow-sm overflow-hidden sticky top-6">
                 <!-- Head Carrito -->
-                <div class="bg-brand-ink text-stone-200 p-4 flex justify-between items-center">
+                <div class="bg-brand-sidebar border-b border-brand-border p-4 flex justify-between items-center">
                   <div>
-                    <h3 class="font-display font-bold text-sm text-white">Venta Actual</h3>
-                    <p class="text-xs text-stone-500" id="nextInvoiceNo">FEU-0000</p>
+                    <h3 class="font-display font-bold text-sm text-brand-ink">Venta Actual</h3>
+                    <p class="text-xs text-brand-steel font-mono" id="nextInvoiceNo">FEU-0000</p>
                   </div>
-                  <span class="text-xs font-semibold bg-stone-800 text-stone-300 px-2.5 py-1 rounded">POS</span>
+                  <span class="text-xs font-bold bg-brand-accent/10 text-brand-accent px-2.5 py-1 rounded">POS ACTIVO</span>
                 </div>
 
                 <!-- Formulario Cliente -->
-                <div class="p-4 border-b border-brand-border bg-stone-50 space-y-3">
+                <div class="p-4 border-b border-brand-border bg-slate-50 space-y-3">
                   <div>
-                    <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Cliente Receptor</label>
+                    <label class="block text-[11px] font-bold text-brand-steel uppercase tracking-wider mb-1">Cliente Receptor</label>
                     <div class="flex gap-2">
                       <select id="posCliente" class="w-full text-sm border border-brand-border rounded-lg bg-white p-2 focus:ring-2 focus:ring-brand-accent/30 focus:outline-none"></select>
-                      <button id="btnNewClienteQuick" class="p-2 border border-brand-border rounded-lg hover:bg-stone-200 transition text-brand-ink bg-white shrink-0" title="Nuevo Cliente Rápido">
+                      <button id="btnNewClienteQuick" class="p-2 border border-brand-border rounded-lg hover:bg-slate-200 transition text-brand-ink bg-white shrink-0" title="Nuevo Cliente Rápido">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
                       </button>
                     </div>
                   </div>
                   <div id="clientCreditStatus" class="hidden text-xs px-3 py-2 bg-amber-50 text-amber-800 border border-amber-200 rounded-lg flex justify-between items-center">
-                    <span>Cupo de crédito: <strong id="lblCreditLimit">$0</strong></span>
-                    <span>Deuda: <strong id="lblCreditBalance" class="text-red-700">$0</strong></span>
+                    <span>Cupo de crédito: <strong id="lblCreditLimit" class="font-mono">$0</strong></span>
+                    <span>Deuda: <strong id="lblCreditBalance" class="text-red-700 font-mono">$0</strong></span>
                   </div>
                 </div>
 
                 <!-- Elementos del Carrito -->
-                <div class="p-4 max-h-64 overflow-y-auto custom-scrollbar divide-y divide-stone-100" id="cartItems">
+                <div class="p-4 max-h-64 overflow-y-auto custom-scrollbar divide-y divide-slate-100" id="cartItems">
                   <!-- Se inyecta dinámicamente -->
                 </div>
 
                 <!-- Configuración Totales -->
-                <div class="p-4 bg-stone-50 border-t border-brand-border space-y-3 text-sm">
+                <div class="p-4 bg-slate-50 border-t border-brand-border space-y-3 text-sm">
                   <div class="grid grid-cols-2 gap-3">
                     <div>
-                      <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Descuento (%)</label>
-                      <input id="posDescuento" type="number" min="0" max="100" class="w-full p-2 border border-brand-border rounded-lg bg-white text-xs text-center focus:ring-2 focus:ring-brand-accent/30" value="0">
+                      <label class="block text-[10px] font-bold text-brand-steel uppercase tracking-wider mb-1">Descuento (%)</label>
+                      <input id="posDescuento" type="number" min="0" max="100" class="w-full p-2 border border-brand-border rounded-lg bg-white text-xs text-center font-bold focus:ring-2 focus:ring-brand-accent/30" value="0">
                     </div>
                     <div>
-                      <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Medio de Pago</label>
-                      <select id="posMetodoPago" class="w-full p-2 border border-brand-border rounded-lg bg-white text-xs focus:ring-2 focus:ring-brand-accent/30">
+                      <label class="block text-[10px] font-bold text-brand-steel uppercase tracking-wider mb-1">Medio de Pago</label>
+                      <select id="posMetodoPago" class="w-full p-2 border border-brand-border rounded-lg bg-white text-xs font-bold focus:ring-2 focus:ring-brand-accent/30">
                         <option>Efectivo</option>
                         <option>Tarjeta débito</option>
                         <option>Tarjeta crédito</option>
@@ -321,20 +323,20 @@
                     </div>
                   </div>
 
-                  <div class="border-t border-dashed border-stone-300 pt-3 space-y-1.5 text-xs">
-                    <div class="flex justify-between text-slate-500"><span>Subtotal:</span><span id="sumSubtotal">$0</span></div>
-                    <div class="flex justify-between text-red-500"><span>Descuento aplicado:</span><span id="sumDescuento">-$0</span></div>
-                    <div class="flex justify-between text-slate-500"><span id="ivaLabel">IVA (19%):</span><span id="sumIva">$0</span></div>
-                    <div class="flex justify-between font-display font-bold text-lg text-brand-ink pt-2 border-t border-dashed border-stone-300">
-                      <span>Total Neto:</span><span id="sumTotal">$0</span>
+                  <div class="border-t border-dashed border-slate-300 pt-3 space-y-1.5 text-xs">
+                    <div class="flex justify-between text-brand-steel"><span>Subtotal:</span><span id="sumSubtotal" class="font-mono">$0</span></div>
+                    <div class="flex justify-between text-red-500"><span>Descuento aplicado:</span><span id="sumDescuento" class="font-mono">-$0</span></div>
+                    <div class="flex justify-between text-brand-steel"><span id="ivaLabel">IVA (19%):</span><span id="sumIva" class="font-mono">$0</span></div>
+                    <div class="flex justify-between font-display font-bold text-lg text-brand-ink pt-2 border-t border-dashed border-slate-300">
+                      <span>Total Neto:</span><span id="sumTotal" class="font-mono">$0</span>
                     </div>
                   </div>
                 </div>
 
                 <!-- Botón de Envío -->
                 <div class="p-4 bg-white border-t border-brand-border grid grid-cols-3 gap-2">
-                  <button id="btnLimpiarCarrito" class="col-span-1 border border-brand-border py-3 rounded-lg text-sm text-slate-600 hover:bg-stone-100 font-semibold transition">Vaciar</button>
-                  <button id="btnGenerarFactura" class="col-span-2 bg-brand-accent hover:bg-brand-accent-dark text-white font-bold py-3 rounded-lg shadow transition flex items-center justify-center gap-2">
+                  <button id="btnLimpiarCarrito" class="col-span-1 border border-brand-border py-3 rounded-lg text-sm text-brand-ink-light hover:bg-slate-100 font-semibold transition">Vaciar</button>
+                  <button id="btnGenerarFactura" class="col-span-2 bg-brand-accent hover:bg-brand-accent-dark text-white font-bold py-3 rounded-lg shadow-sm transition flex items-center justify-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
                     Facturar (F2)
                   </button>
@@ -350,7 +352,7 @@
         <section id="view-facturas" class="view hidden space-y-6">
           <div class="bg-white border border-brand-border rounded-xl p-4 shadow-sm flex flex-col sm:flex-row gap-4 items-center justify-between">
             <input id="facSearch" type="text" class="w-full sm:max-w-xs pl-3 pr-4 py-2 border border-brand-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/50" placeholder="Buscar por consecutivo o cliente...">
-            <select id="facEstadoFilter" class="border border-brand-border rounded-lg text-sm p-2 bg-white text-slate-700">
+            <select id="facEstadoFilter" class="border border-brand-border rounded-lg text-sm p-2 bg-white text-brand-ink-light font-medium">
               <option value="">Todos los estados</option>
               <option value="Pagada">Pagadas</option>
               <option value="Anulada">Anuladas</option>
@@ -366,7 +368,7 @@
           <div class="bg-white border border-brand-border rounded-xl p-4 shadow-sm flex flex-col md:flex-row gap-4 items-center justify-between">
             <div class="flex gap-4 w-full md:max-w-md">
               <input id="invSearch" type="text" class="w-full pl-3 pr-4 py-2 border border-brand-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/50" placeholder="Buscar por nombre o código...">
-              <select id="invCatFilter" class="border border-brand-border rounded-lg text-sm p-2 bg-white text-slate-700 w-44"></select>
+              <select id="invCatFilter" class="border border-brand-border rounded-lg text-sm p-2 bg-white text-brand-ink-light w-44 font-medium"></select>
             </div>
             <button id="btnAddProducto" class="bg-brand-accent hover:bg-brand-accent-dark text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition flex items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
@@ -436,52 +438,52 @@
         <section id="view-reportes" class="view hidden space-y-6">
           <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm flex flex-col sm:flex-row gap-4 items-center">
             <div class="w-full sm:max-w-xs">
-              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Desde</label>
-              <input id="repDesde" type="date" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-stone-50">
+              <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">Desde</label>
+              <input id="repDesde" type="date" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 font-semibold text-brand-ink">
             </div>
             <div class="w-full sm:max-w-xs">
-              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Hasta</label>
-              <input id="repHasta" type="date" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-stone-50">
+              <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">Hasta</label>
+              <input id="repHasta" type="date" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 font-semibold text-brand-ink">
             </div>
             <div class="flex gap-2 w-full sm:w-auto pt-5">
-              <button id="btnAplicarReporte" class="flex-1 sm:flex-none bg-brand-ink hover:bg-stone-800 text-stone-100 text-sm font-semibold px-4 py-2 rounded-lg transition">Filtrar</button>
-              <button id="btnImprimirReporte" class="flex-1 sm:flex-none border border-brand-border bg-white text-slate-700 hover:bg-stone-100 text-sm font-semibold px-4 py-2 rounded-lg transition">Imprimir</button>
+              <button id="btnAplicarReporte" class="flex-1 sm:flex-none bg-brand-ink hover:bg-slate-800 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">Filtrar</button>
+              <button id="btnImprimirReporte" class="flex-1 sm:flex-none border border-brand-border bg-white text-brand-ink-light hover:bg-slate-50 text-sm font-semibold px-4 py-2 rounded-lg transition">Imprimir</button>
             </div>
           </div>
 
           <!-- Reportes KPIs -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-28">
-              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-brand-accent"></div>
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand-accent"></div>
               <div>
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Ventas Filtradas</span>
+                <span class="text-xs font-bold text-brand-steel uppercase tracking-wider">Ventas Filtradas</span>
                 <p id="repTotalVentas" class="font-display font-bold text-xl text-brand-ink mt-1">$0</p>
               </div>
-              <p id="repNumFacturas" class="text-xs text-slate-400 font-semibold">0 facturas encontradas</p>
+              <p id="repNumFacturas" class="text-xs text-brand-steel font-semibold">0 facturas encontradas</p>
             </div>
             <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-28">
-              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-brand-steel"></div>
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500"></div>
               <div>
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Ticket Promedio</span>
+                <span class="text-xs font-bold text-brand-steel uppercase tracking-wider">Ticket Promedio</span>
                 <p id="repTicketProm" class="font-display font-bold text-xl text-brand-ink mt-1">$0</p>
               </div>
-              <p class="text-xs text-slate-400 font-semibold">Por transacción</p>
+              <p class="text-xs text-brand-steel font-semibold">Por transacción</p>
             </div>
             <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-28">
-              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-amber-500"></div>
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500"></div>
               <div>
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Unidades Vendidas</span>
+                <span class="text-xs font-bold text-brand-steel uppercase tracking-wider">Unidades Vendidas</span>
                 <p id="repUnidades" class="font-display font-bold text-xl text-brand-ink mt-1">0</p>
               </div>
-              <p class="text-xs text-slate-400 font-semibold">Artículos despachados</p>
+              <p class="text-xs text-brand-steel font-semibold">Artículos despachados</p>
             </div>
             <div class="bg-white border border-brand-border p-5 rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between h-28">
-              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-emerald-600"></div>
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500"></div>
               <div>
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Margen Utilidad Bruta</span>
+                <span class="text-xs font-bold text-brand-steel uppercase tracking-wider">Margen Utilidad Bruta</span>
                 <p id="repUtilidad" class="font-display font-bold text-xl text-brand-ink mt-1">$0</p>
               </div>
-              <p class="text-xs text-slate-400 font-semibold">Ganancia teórica estimada</p>
+              <p class="text-xs text-brand-steel font-semibold">Ganancia teórica estimada</p>
             </div>
           </div>
 
@@ -501,42 +503,42 @@
         <!-- ---------------- SECCIÓN 10: CONFIGURACIÓN ---------------- -->
         <section id="view-config" class="view hidden space-y-6">
           <div class="bg-white border border-brand-border rounded-xl shadow-sm overflow-hidden max-w-2xl">
-            <div class="bg-brand-ink text-white p-4 font-display font-bold text-sm tracking-wider uppercase">
+            <div class="bg-brand-sidebar text-brand-ink p-4 font-display font-bold text-sm tracking-wider uppercase border-b border-brand-border">
               Datos Generales de la Empresa
             </div>
             <div class="p-5 space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Nombre Comercial</label>
-                  <input id="cfgNombre" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none">
+                  <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">Nombre Comercial</label>
+                  <input id="cfgNombre" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none font-semibold text-brand-ink">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">NIT / Identificación Fiscal</label>
-                  <input id="cfgNit" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none">
+                  <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">NIT / Identificación Fiscal</label>
+                  <input id="cfgNit" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none font-semibold text-brand-ink">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Dirección Fiscal</label>
-                  <input id="cfgDireccion" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none">
+                  <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">Dirección Fiscal</label>
+                  <input id="cfgDireccion" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none font-semibold text-brand-ink">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Ciudad / Departamento</label>
-                  <input id="cfgCiudad" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none">
+                  <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">Ciudad / Departamento</label>
+                  <input id="cfgCiudad" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none font-semibold text-brand-ink">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Teléfono Comercial</label>
-                  <input id="cfgTelefono" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none">
+                  <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">Teléfono Comercial</label>
+                  <input id="cfgTelefono" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none font-semibold text-brand-ink">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Tasa de Impuesto IVA (%)</label>
-                  <input id="cfgIva" type="number" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none">
+                  <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">Tasa de Impuesto IVA (%)</label>
+                  <input id="cfgIva" type="number" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none font-semibold text-brand-ink">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Prefijo Alfanumérico Facturas</label>
-                  <input id="cfgPrefijo" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none">
+                  <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">Prefijo Alfanumérico Facturas</label>
+                  <input id="cfgPrefijo" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none font-semibold text-brand-ink">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Próximo Consecutivo Venta</label>
-                  <input id="cfgConsecutivo" type="number" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none">
+                  <label class="block text-xs font-bold text-brand-steel uppercase tracking-wider mb-1">Próximo Consecutivo Venta</label>
+                  <input id="cfgConsecutivo" type="number" class="w-full p-2 border border-brand-border rounded-lg text-sm focus:ring-2 focus:ring-brand-accent/30 focus:outline-none font-semibold text-brand-ink">
                 </div>
               </div>
 
@@ -549,21 +551,21 @@
 
           <!-- Módulo de Backup y Restauración -->
           <div class="bg-white border border-brand-border rounded-xl shadow-sm overflow-hidden max-w-2xl">
-            <div class="bg-brand-steel text-white p-4 font-display font-bold text-sm tracking-wider uppercase">
+            <div class="bg-slate-100 text-brand-ink p-4 font-display font-bold text-sm tracking-wider uppercase border-b border-brand-border">
               Copias de Seguridad (Backup & Restaurar)
             </div>
             <div class="p-5 space-y-4">
-              <p class="text-xs text-slate-500 leading-relaxed">
+              <p class="text-xs text-brand-steel leading-relaxed font-semibold">
                 Dado que este software opera de manera local, los cambios y registros se almacenan dentro del navegador actual. Es altamente recomendable descargar respaldos periódicos para prevenir pérdidas de datos en caso de limpieza de historial.
               </p>
               <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                <button id="btnExportBackup" class="bg-brand-ink hover:bg-stone-800 text-stone-100 text-sm font-semibold px-4 py-2.5 rounded-lg transition flex items-center justify-center gap-2">
+                <button id="btnExportBackup" class="bg-brand-ink hover:bg-slate-800 text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition flex items-center justify-center gap-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                   Exportar Backup (JSON)
                 </button>
                 <div class="relative flex-1">
                   <input type="file" id="fileImportBackup" accept=".json" class="hidden">
-                  <button id="btnTriggerImport" class="w-full border border-brand-border bg-stone-50 hover:bg-stone-100 text-slate-700 text-sm font-semibold px-4 py-2.5 rounded-lg transition flex items-center justify-center gap-2">
+                  <button id="btnTriggerImport" class="w-full border border-brand-border bg-slate-50 hover:bg-slate-100 text-brand-ink-light text-sm font-semibold px-4 py-2.5 rounded-lg transition flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                     Restaurar Backup desde Archivo
                   </button>
@@ -578,8 +580,8 @@
   </div>
 
   <!-- ============================= MODALES DINÁMICOS ============================= -->
-  <div id="modalBackdrop" class="fixed inset-0 bg-black/60 z-[100] backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div id="modalBox" class="bg-white border border-brand-border rounded-xl shadow-2xl max-h-[90vh] overflow-y-auto w-full max-w-lg flex flex-col">
+  <div id="modalBackdrop" class="fixed inset-0 bg-black/50 z-[100] backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div id="modalBox" class="bg-white border border-brand-border rounded-xl shadow-xl max-h-[90vh] overflow-y-auto w-full max-w-lg flex flex-col">
       <!-- Contenido inyectado dinámicamente -->
     </div>
   </div>
@@ -595,7 +597,7 @@
     (function() {
       "use strict";
 
-      const STORAGE_KEY = 'sigef_ferreteria_professional_v25';
+      const STORAGE_KEY = 'sigef_ferreteria_professional_v28';
       let DB = null;
       let cart = [];
       let currentCategoryFilter = 'Todos';
@@ -706,7 +708,7 @@
               proveedorId: 1,
               total: 320000,
               items: [
-                {productoId: 2, nombre: 'Taladro percutor Bosch 1/2" 700W', costo: 145000, cantidad: 2, total: 290000}
+                {productoId: 2, fontName: 'Taladro percutor Bosch 1/2" 700W', costo: 145000, cantidad: 2, total: 290000}
               ]
             }
           ]
@@ -718,7 +720,6 @@
         if (stored) {
           try {
             DB = JSON.parse(stored);
-            // Retrocompatibilidad con sistemas de cartera de deudas de clientes
             DB.customers.forEach(c => {
               if (c.creditLimit === undefined) c.creditLimit = 0;
               if (c.balance === undefined) c.balance = 0;
@@ -765,10 +766,10 @@
         let footerHtml = '';
         if (buttons.length > 0) {
           footerHtml = `
-            <div class="px-5 py-4 border-t border-stone-100 bg-stone-50 flex justify-end gap-2 shrink-0">
+            <div class="px-5 py-4 border-t border-brand-border bg-slate-50 flex justify-end gap-2 shrink-0">
               ${buttons.map((btn, i) => `
                 <button id="mBtn-${i}" class="px-4 py-2 text-sm font-semibold rounded-lg transition ${
-                  btn.class || 'bg-stone-200 text-slate-700 hover:bg-stone-300'
+                  btn.class || 'bg-slate-200 text-slate-700 hover:bg-slate-300'
                 }">${btn.text}</button>
               `).join('')}
             </div>
@@ -776,9 +777,9 @@
         }
 
         box.innerHTML = `
-          <div class="px-5 py-4 border-b border-stone-100 flex justify-between items-center bg-stone-50 shrink-0">
+          <div class="px-5 py-4 border-b border-brand-border flex justify-between items-center bg-slate-50 shrink-0">
             <h3 class="font-display font-bold text-slate-800 text-base uppercase tracking-wider">${title}</h3>
-            <button id="modalCloseBtn" class="p-1 text-slate-400 hover:text-slate-700 hover:bg-stone-200 rounded-lg transition">
+            <button id="modalCloseBtn" class="p-1 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded-lg transition">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
           </div>
@@ -790,7 +791,6 @@
 
         backdrop.classList.remove('hidden');
 
-        // Handlers
         document.getElementById('modalCloseBtn').onclick = closeModal;
         buttons.forEach((btn, i) => {
           document.getElementById(`mBtn-${i}`).onclick = function() {
@@ -811,7 +811,6 @@
         return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(val);
       }
 
-      // Normaliza tildes y caracteres especiales para búsquedas insensibles en español
       function normalizeText(text) {
         return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
       }
@@ -839,19 +838,18 @@
 
         function selectNav(btn) {
           navBtns.forEach(b => {
-            b.classList.remove('bg-stone-800', 'text-white');
-            b.classList.add('text-stone-400');
+            b.classList.remove('bg-brand-accent-soft', 'text-brand-accent');
+            b.classList.add('text-brand-ink-light');
           });
           views.forEach(v => v.classList.add('hidden'));
 
-          btn.classList.remove('text-stone-400');
-          btn.classList.add('bg-stone-800', 'text-white');
+          btn.classList.remove('text-brand-ink-light');
+          btn.classList.add('bg-brand-accent-soft', 'text-brand-accent');
 
           const target = btn.getAttribute('data-view');
           document.getElementById('view-' + target).classList.remove('hidden');
           viewTitle.textContent = btn.textContent.trim();
 
-          // Cerrar en móviles
           sidebar.classList.add('-translate-x-full');
           overlay.classList.add('hidden');
 
@@ -862,7 +860,6 @@
           btn.addEventListener('click', () => selectNav(btn));
         });
 
-        // Hamburger móvil
         document.getElementById('hamburger-menu').onclick = () => {
           sidebar.classList.remove('-translate-x-full');
           overlay.classList.remove('hidden');
@@ -873,7 +870,6 @@
           overlay.classList.add('hidden');
         };
 
-        // Acciones rápidas
         document.getElementById('btnQuickInvoice').onclick = () => {
           const posBtn = document.querySelector('[data-view="pos"]');
           if (posBtn) selectNav(posBtn);
@@ -905,23 +901,17 @@
         const todayStr = new Date().toISOString().split('T')[0];
         const thisMonthStr = new Date().toISOString().substring(0, 7);
 
-        // Ventas de hoy
         const todayInvoices = DB.invoices.filter(f => f.fecha === todayStr && f.estado === 'Pagada');
         const salesToday = todayInvoices.reduce((acc, f) => acc + f.total, 0);
 
-        // Ventas del mes
         const monthInvoices = DB.invoices.filter(f => f.fecha.startsWith(thisMonthStr) && f.estado === 'Pagada');
         const salesMonth = monthInvoices.reduce((acc, f) => acc + f.total, 0);
 
-        // Stock bajo
         const lowStockProducts = DB.products.filter(p => p.stock <= p.stockMin);
-
-        // Valor de inventario (Costo ponderado de stock actual)
         const inventoryValue = DB.products.reduce((acc, p) => acc + (p.precioCompra * p.stock), 0);
 
-        // Asignación de KPIs
         document.getElementById('kpiVentasHoy').textContent = formatCop(salesToday);
-        document.getElementById('kpiFacturasHoy').textContent = `${todayInvoices.length} factura(s) procesada(s)`;
+        document.getElementById('kpiFacturasHoy').textContent = `${todayInvoices.length} factura(s) de hoy`;
 
         document.getElementById('kpiVentasMes').textContent = formatCop(salesMonth);
         document.getElementById('kpiFacturasMes').textContent = `${monthInvoices.length} facturas este mes`;
@@ -930,31 +920,30 @@
         document.getElementById('kpiValorInv').textContent = formatCop(inventoryValue);
         document.getElementById('kpiTotalProductos').textContent = `${DB.products.length} referencias activas`;
 
-        // Alertas de Stock Bajo
         const lowStockTable = document.getElementById('lowStockTable');
         if (lowStockProducts.length === 0) {
           lowStockTable.innerHTML = `
-            <div class="p-6 text-center text-slate-400 text-xs font-semibold">
-              <svg class="w-8 h-8 mx-auto text-emerald-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              ¡Inventarios completos! No hay alertas de stock bajo.
+            <div class="p-6 text-center text-slate-400 text-xs font-semibold flex flex-col justify-center items-center h-full">
+              <svg class="w-8 h-8 text-emerald-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              ¡Inventario al día! Sin stock crítico.
             </div>
           `;
         } else {
           lowStockTable.innerHTML = `
             <table class="w-full text-xs text-left">
               <thead>
-                <tr class="bg-stone-50 text-slate-500 font-bold border-b border-stone-200">
+                <tr class="bg-slate-50 text-brand-steel font-bold border-b border-brand-border">
                   <th class="py-2 px-3">Código</th>
                   <th class="py-2 px-3">Producto</th>
                   <th class="py-2 px-3 text-center">Físico</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-stone-100">
+              <tbody class="divide-y divide-slate-100">
                 ${lowStockProducts.slice(0, 5).map(p => `
-                  <tr class="hover:bg-stone-50">
-                    <td class="py-2 px-3 font-mono font-medium">${p.codigo}</td>
-                    <td class="py-2 px-3">${p.nombre}</td>
-                    <td class="py-2 px-3 text-center font-bold text-red-500">${p.stock}</td>
+                  <tr class="hover:bg-slate-50">
+                    <td class="py-2 px-3 font-mono text-brand-steel">${p.codigo}</td>
+                    <td class="py-2 px-3 font-semibold text-brand-ink">${p.nombre}</td>
+                    <td class="py-2 px-3 text-center font-bold text-red-600">${p.stock}</td>
                   </tr>
                 `).join('')}
               </tbody>
@@ -962,16 +951,15 @@
           `;
         }
 
-        // Historial Reciente de Facturas
         const recentInvoicesTable = document.getElementById('recentInvoicesTable');
         const lastInvoices = [...DB.invoices].sort((a, b) => b.id - a.id).slice(0, 5);
 
         if (lastInvoices.length === 0) {
-          recentInvoicesTable.innerHTML = `<div class="p-6 text-center text-slate-400">Sin facturas emitidas todavía.</div>`;
+          recentInvoicesTable.innerHTML = `<div class="p-6 text-center text-slate-400 font-semibold text-xs">Sin facturas emitidas.</div>`;
         } else {
           recentInvoicesTable.innerHTML = `
             <table class="w-full text-xs text-left">
-              <thead class="bg-stone-50 text-slate-500 font-bold uppercase tracking-wider text-[10px] border-b border-stone-200">
+              <thead class="bg-slate-50 text-brand-steel font-bold uppercase tracking-wider text-[10px] border-b border-brand-border">
                 <tr>
                   <th class="py-3 px-4">Consecutivo</th>
                   <th class="py-3 px-4">Fecha</th>
@@ -980,14 +968,14 @@
                   <th class="py-3 px-4 text-right">Total</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-stone-100 bg-white">
+              <tbody class="divide-y divide-slate-100 bg-white">
                 ${lastInvoices.map(f => `
-                  <tr class="hover:bg-stone-50">
+                  <tr class="hover:bg-slate-50">
                     <td class="py-3 px-4 font-mono font-bold text-brand-accent">${DB.config.prefijo}-${f.consecutivo}</td>
-                    <td class="py-3 px-4">${f.fecha}</td>
-                    <td class="py-3 px-4 font-medium">${getCustomer(f.clienteId).nombre || 'Desconocido'}</td>
-                    <td class="py-3 px-4">${f.metodoPago}</td>
-                    <td class="py-3 px-4 text-right font-bold text-slate-800">${formatCop(f.total)}</td>
+                    <td class="py-3 px-4 text-brand-steel font-medium">${f.fecha}</td>
+                    <td class="py-3 px-4 font-bold text-brand-ink">${getCustomer(f.clienteId).nombre || 'Desconocido'}</td>
+                    <td class="py-3 px-4 font-medium">${f.metodoPago}</td>
+                    <td class="py-3 px-4 text-right font-bold text-brand-ink font-mono">${formatCop(f.total)}</td>
                   </tr>
                 `).join('')}
               </tbody>
@@ -1026,19 +1014,17 @@
           const col = document.createElement('div');
           col.className = 'flex-1 flex flex-col items-center justify-end h-full';
           col.innerHTML = `
-            <span class="text-[9px] font-bold text-slate-800 mb-1" title="${formatCop(val)}">${val > 0 ? formatCop(val).replace('COP', '').trim() : ''}</span>
-            <div class="w-full bg-brand-accent hover:bg-brand-accent-dark transition-all rounded-t duration-500" style="height: ${Math.max(percentage, 3)}%;"></div>
-            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-2">${labels[index]}</span>
+            <span class="text-[9px] font-bold text-brand-ink mb-1 font-mono" title="${formatCop(val)}">${val > 0 ? formatCop(val).replace('COP', '').trim() : ''}</span>
+            <div class="w-full bg-brand-accent hover:bg-brand-accent-dark transition-all rounded-t-md duration-500 shadow-sm" style="height: ${Math.max(percentage, 4)}%;"></div>
+            <span class="text-[9px] font-bold text-brand-steel uppercase tracking-wider mt-2">${labels[index]}</span>
           `;
           chartContainer.appendChild(col);
         });
       }
 
       function renderPOS() {
-        // Consecutivo sugerido
         document.getElementById('nextInvoiceNo').textContent = `${DB.config.prefijo}-${DB.config.consecutivo}`;
 
-        // Cargar clientes
         const selectCli = document.getElementById('posCliente');
         selectCli.innerHTML = '';
         DB.customers.forEach(c => {
@@ -1048,20 +1034,18 @@
           selectCli.appendChild(opt);
         });
 
-        // Escucha cambios en el cliente para mostrar el estado de su crédito
         selectCli.onchange = updateCreditStatusView;
 
-        // Cargar categorías chips
         const catsDiv = document.getElementById('posCats');
         catsDiv.innerHTML = `
-          <button class="chip shrink-0 text-xs px-3 py-1.5 rounded-full border border-stone-200 transition ${
-            currentCategoryFilter === 'Todos' ? 'bg-brand-ink text-white border-brand-ink font-bold' : 'bg-white text-slate-600 hover:bg-stone-100'
+          <button class="chip shrink-0 text-xs px-3 py-1.5 rounded-full border border-brand-border transition ${
+            currentCategoryFilter === 'Todos' ? 'bg-brand-accent text-white border-brand-accent font-bold' : 'bg-white text-brand-steel hover:bg-slate-100'
           }" data-cat="Todos">Todos</button>
         `;
         DB.categories.forEach(c => {
           catsDiv.innerHTML += `
-            <button class="chip shrink-0 text-xs px-3 py-1.5 rounded-full border border-stone-200 transition ${
-              currentCategoryFilter == c.id ? 'bg-brand-ink text-white border-brand-ink font-bold' : 'bg-white text-slate-600 hover:bg-stone-100'
+            <button class="chip shrink-0 text-xs px-3 py-1.5 rounded-full border border-brand-border transition ${
+              currentCategoryFilter == c.id ? 'bg-brand-accent text-white border-brand-accent font-bold' : 'bg-white text-brand-steel hover:bg-slate-100'
             }" data-cat="${c.id}">${c.nombre}</button>
           `;
         });
@@ -1077,7 +1061,6 @@
         renderPOSCart();
         updateCreditStatusView();
 
-        // Buscar en tiempo real
         document.getElementById('posSearch').oninput = handlePOSSearch;
         document.getElementById('posDescuento').oninput = renderPOSCart;
       }
@@ -1099,7 +1082,6 @@
       function handlePOSSearch() {
         const query = normalizeText(this.value.trim());
         
-        // Emulación de escaneo de código de barras físico (búsqueda por código exacto)
         const exactProduct = DB.products.find(p => p.codigo === this.value.trim());
         if (exactProduct) {
           addToCart(exactProduct);
@@ -1130,7 +1112,7 @@
 
         if (filtered.length === 0) {
           grid.innerHTML = `
-            <div class="col-span-full py-12 text-center text-slate-400 font-medium">
+            <div class="col-span-full py-12 text-center text-brand-steel font-medium">
               Ningún artículo coincide con tu búsqueda.
             </div>
           `;
@@ -1154,14 +1136,14 @@
           card.innerHTML = `
             <div class="space-y-1">
               <div class="flex justify-between items-center gap-1">
-                <span class="text-[9px] font-mono text-slate-400 font-bold">${p.codigo}</span>
+                <span class="text-[9px] font-mono text-brand-steel font-bold">${p.codigo}</span>
                 ${alertBadge}
               </div>
               <h4 class="font-bold text-xs text-brand-ink leading-tight line-clamp-2" title="${p.nombre}">${p.nombre}</h4>
             </div>
             <div class="mt-3 flex items-center justify-between">
-              <span class="font-display font-bold text-sm text-brand-accent">${formatCop(p.precioVenta)}</span>
-              <span class="text-[10px] text-slate-400 font-semibold uppercase">${p.unidad}</span>
+              <span class="font-display font-bold text-sm text-brand-accent font-mono">${formatCop(p.precioVenta)}</span>
+              <span class="text-[10px] text-brand-steel font-semibold uppercase">${p.unidad}</span>
             </div>
           `;
 
@@ -1228,7 +1210,7 @@
 
         if (cart.length === 0) {
           container.innerHTML = `
-            <div class="py-12 text-center text-slate-400 text-xs">
+            <div class="py-12 text-center text-brand-steel text-xs">
               <svg class="w-8 h-8 mx-auto text-slate-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l2.6 12.6a2 2 0 0 0 2 1.4h8.8a2 2 0 0 0 2-1.6L22 8H6"></path></svg>
               El carrito de venta está vacío.
             </div>
@@ -1246,12 +1228,12 @@
           row.innerHTML = `
             <div class="flex-1 min-w-0">
               <h5 class="font-bold text-xs text-brand-ink truncate" title="${item.nombre}">${item.nombre}</h5>
-              <span class="text-[10px] text-slate-400 font-semibold">${formatCop(item.precio)} c/u</span>
+              <span class="text-[10px] text-brand-steel font-semibold font-mono">${formatCop(item.precio)} c/u</span>
             </div>
-            <div class="flex items-center gap-1 bg-stone-100 p-1 rounded-lg">
-              <button class="w-5 h-5 bg-white border border-stone-200 text-xs font-bold rounded flex items-center justify-center hover:bg-stone-200" onclick="changeCartQty(${index}, -1)">-</button>
+            <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg">
+              <button class="w-5 h-5 bg-white border border-brand-border text-xs font-bold rounded flex items-center justify-center hover:bg-slate-200" onclick="changeCartQty(${index}, -1)">-</button>
               <input type="text" readonly value="${item.cantidad}" class="w-8 text-center text-xs font-bold bg-transparent border-none outline-none">
-              <button class="w-5 h-5 bg-white border border-stone-200 text-xs font-bold rounded flex items-center justify-center hover:bg-stone-200" onclick="changeCartQty(${index}, 1)">+</button>
+              <button class="w-5 h-5 bg-white border border-brand-border text-xs font-bold rounded flex items-center justify-center hover:bg-slate-200" onclick="changeCartQty(${index}, 1)">+</button>
             </div>
             <div class="w-20 text-right font-mono text-xs font-bold text-brand-ink">${formatCop(item.total)}</div>
             <button class="text-red-500 hover:text-red-700 p-1" onclick="removeCartItem(${index})">
@@ -1261,7 +1243,6 @@
           container.appendChild(row);
         });
 
-        // Cálculos exactos
         const subtotal = cart.reduce((acc, item) => acc + item.total, 0);
         const descPorcentaje = parseFloat(document.getElementById('posDescuento').value) || 0;
         const descuento = Math.round(subtotal * (descPorcentaje / 100));
@@ -1276,6 +1257,12 @@
         document.getElementById('sumIva').textContent = formatCop(iva);
         document.getElementById('sumTotal').textContent = formatCop(total);
       }
+
+      document.getElementById('btnLimpiarCarrito').onclick = function() {
+        cart = [];
+        renderPOSCart();
+        showToast('Carrito vaciado.');
+      };
 
       document.getElementById('btnGenerarFactura').onclick = function() {
         if (cart.length === 0) {
@@ -1294,7 +1281,6 @@
         const iva = Math.round(baseImponible * (DB.config.iva / 100));
         const total = baseImponible + iva;
 
-        // Validación crítica de Crédito Cliente en el mundo real
         if (metodoPago === 'Crédito cliente') {
           if (!cli.creditLimit || cli.creditLimit <= 0) {
             showToast('Este cliente no posee habilitado cupo de crédito.', 'err');
@@ -1305,7 +1291,6 @@
             showToast(`Límite excedido. Cupo restante disponible: ${formatCop(disponible)}`, 'err');
             return;
           }
-          // Incrementar saldo deudor del cliente
           cli.balance = (cli.balance || 0) + total;
         }
 
@@ -1325,7 +1310,6 @@
           items: [...cart]
         };
 
-        // Actualizar existencias físicas
         cart.forEach(item => {
           const p = DB.products.find(prod => prod.id === item.productoId);
           if (p) p.stock = Math.max(0, p.stock - item.cantidad);
@@ -1336,22 +1320,21 @@
         saveDB();
 
         cart = [];
-        showToast(`Factura ${DB.config.prefijo}-${consecutivo} procesada exitosamente.`);
+        showToast(`Factura ${DB.config.prefijo}-${consecutivo} procesada.`);
         
         renderPOS();
         printInvoiceModal(nuevaFactura);
       };
 
-      // Modal interactivo de facturas con selector de impresión (80mm vs Carta)
       function printInvoiceModal(invoice) {
         const cli = getCustomer(invoice.clienteId);
-        let selectedFormat = 'thermal'; // Formato por defecto para tiquetera
+        let selectedFormat = 'thermal';
 
         function generateInvoiceMarkup(format) {
           const itemsRows = invoice.items.map(it => {
             if (format === 'thermal') {
               return `
-                <div class="flex justify-between text-[11px] font-mono py-1 border-b border-dashed border-stone-200">
+                <div class="flex justify-between text-[11px] font-mono py-1 border-b border-dashed border-slate-300">
                   <div class="w-2/3 truncate">${it.nombre}</div>
                   <div class="w-1/12 text-center">${it.cantidad}</div>
                   <div class="w-1/4 text-right">${formatCop(it.total).replace('COP','').trim()}</div>
@@ -1359,9 +1342,9 @@
               `;
             } else {
               return `
-                <tr class="border-b border-stone-200 text-xs">
+                <tr class="border-b border-slate-200 text-xs">
                   <td class="py-2 font-semibold text-slate-800">${it.nombre}</td>
-                  <td class="py-2 text-center font-mono">${it.cantidad}</td>
+                  <td class="py-2 text-center font-mono font-bold">${it.cantidad}</td>
                   <td class="py-2 text-right font-mono">${formatCop(it.precio)}</td>
                   <td class="py-2 text-right font-mono font-bold">${formatCop(it.total)}</td>
                 </tr>
@@ -1371,19 +1354,19 @@
 
           if (format === 'thermal') {
             return `
-              <div class="w-[80mm] max-w-full mx-auto p-4 bg-white text-stone-900 border border-stone-300 rounded shadow-sm text-xs font-mono" id="printContent">
+              <div class="w-[80mm] max-w-full mx-auto p-4 bg-white text-slate-900 border border-slate-300 rounded shadow-sm text-xs font-mono" id="printContent">
                 <div class="text-center space-y-1">
                   <h4 class="font-bold text-sm uppercase">${DB.config.nombre}</h4>
                   <p class="text-[10px] leading-tight">NIT: ${DB.config.nit}<br>${DB.config.direccion}, ${DB.config.ciudad}<br>TEL: ${DB.config.telefono}</p>
                 </div>
-                <div class="border-t border-b border-dashed border-stone-500 py-2 my-2 text-[10px] space-y-0.5">
+                <div class="border-t border-b border-dashed border-slate-400 py-2 my-2 text-[10px] space-y-0.5">
                   <p><strong>TIQUETE:</strong> ${DB.config.prefijo}-${invoice.consecutivo}</p>
                   <p><strong>FECHA:</strong> ${invoice.fecha}</p>
                   <p><strong>CLIENTE:</strong> ${cli.nombre}</p>
                   <p><strong>PAGO:</strong> ${invoice.metodoPago}</p>
                   <p><strong>ESTADO:</strong> ${invoice.estado.toUpperCase()}</p>
                 </div>
-                <div class="font-bold text-[10px] border-b border-stone-500 pb-1 flex justify-between">
+                <div class="font-bold text-[10px] border-b border-slate-400 pb-1 flex justify-between">
                   <span class="w-2/3">Artículo</span>
                   <span class="w-1/12 text-center">Cant</span>
                   <span class="w-1/4 text-right">Monto</span>
@@ -1391,13 +1374,13 @@
                 <div class="py-1">
                   ${itemsRows}
                 </div>
-                <div class="border-t border-dashed border-stone-500 pt-2 text-[11px] space-y-1">
+                <div class="border-t border-dashed border-slate-400 pt-2 text-[11px] space-y-1">
                   <div class="flex justify-between"><span>SUBTOTAL:</span><span>${formatCop(invoice.subtotal).replace('COP','').trim()}</span></div>
                   <div class="flex justify-between text-red-700"><span>DESC:</span><span>-${formatCop(invoice.descuento).replace('COP','').trim()}</span></div>
                   <div class="flex justify-between"><span>IVA (${DB.config.iva}%):</span><span>${formatCop(invoice.iva).replace('COP','').trim()}</span></div>
-                  <div class="flex justify-between font-bold text-xs pt-1 border-t border-dashed border-stone-400"><span>TOTAL NETO:</span><span>${formatCop(invoice.total)}</span></div>
+                  <div class="flex justify-between font-bold text-xs pt-1 border-t border-dashed border-slate-400"><span>TOTAL NETO:</span><span>${formatCop(invoice.total)}</span></div>
                 </div>
-                <div class="text-center text-[9px] text-stone-500 mt-6 pt-2 border-t border-dashed border-stone-400 leading-tight">
+                <div class="text-center text-[9px] text-slate-500 mt-6 pt-2 border-t border-dashed border-slate-400 leading-tight">
                   Impreso en punto de venta.<br>¡Gracias por preferirnos!
                 </div>
               </div>
@@ -1405,7 +1388,7 @@
           } else {
             return `
               <div class="w-full bg-white p-6 rounded-lg text-slate-800 text-sm" id="printContent">
-                <div class="flex justify-between items-start border-b border-brand-ink pb-4">
+                <div class="flex justify-between items-start border-b border-slate-900 pb-4">
                   <div>
                     <h3 class="font-display font-bold text-lg uppercase text-slate-900">${DB.config.nombre}</h3>
                     <p class="text-xs text-slate-500 leading-relaxed mt-1">
@@ -1414,8 +1397,8 @@
                       Teléfono: ${DB.config.telefono}
                     </p>
                   </div>
-                  <div class="text-right border-2 border-dashed border-brand-ink rounded-xl p-3 bg-stone-50">
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Factura de Venta</span>
+                  <div class="text-right border-2 border-dashed border-brand-accent rounded-xl p-3 bg-slate-50">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-brand-steel">Factura de Venta</span>
                     <h4 class="font-mono font-bold text-base text-brand-accent mt-0.5">${DB.config.prefijo}-${invoice.consecutivo}</h4>
                     <span class="text-xs font-bold text-emerald-600 block mt-1">${invoice.estado.toUpperCase()}</span>
                   </div>
@@ -1423,13 +1406,13 @@
 
                 <div class="grid grid-cols-2 gap-4 my-4 text-xs">
                   <div>
-                    <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block mb-1">Detalles del Receptor</span>
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-brand-steel block mb-1">Detalles del Receptor</span>
                     <p><strong>Cliente:</strong> ${cli.nombre}</p>
                     <p><strong>Documento/NIT:</strong> ${cli.documento}</p>
                     <p><strong>Dirección:</strong> ${cli.direccion || 'No especificada'}</p>
                   </div>
                   <div class="text-right">
-                    <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block mb-1">Información Tributaria</span>
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-brand-steel block mb-1">Información Tributaria</span>
                     <p><strong>Fecha Registro:</strong> ${invoice.fecha}</p>
                     <p><strong>Forma de Pago:</strong> ${invoice.metodoPago}</p>
                     <p><strong>Régimen:</strong> Simplificado Responsable de IVA</p>
@@ -1438,7 +1421,7 @@
 
                 <table class="w-full my-4 text-xs">
                   <thead>
-                    <tr class="bg-stone-100 text-slate-600 font-bold border-b border-stone-300">
+                    <tr class="bg-slate-100 text-slate-600 font-bold border-b border-slate-300">
                       <th class="py-2 text-left">Detalle Producto</th>
                       <th class="py-2 text-center w-20">Cant</th>
                       <th class="py-2 text-right w-28">Val. Unitario</th>
@@ -1450,16 +1433,16 @@
                   </tbody>
                 </table>
 
-                <div class="w-64 ml-auto pt-2 space-y-1.5 text-xs border-t border-stone-300">
-                  <div class="flex justify-between text-slate-500"><span>Subtotal:</span><span class="font-mono">${formatCop(invoice.subtotal)}</span></div>
+                <div class="w-64 ml-auto pt-2 space-y-1.5 text-xs border-t border-slate-300">
+                  <div class="flex justify-between text-brand-steel"><span>Subtotal:</span><span class="font-mono">${formatCop(invoice.subtotal)}</span></div>
                   <div class="flex justify-between text-red-600"><span>Descuento aplicado:</span><span class="font-mono">-${formatCop(invoice.descuento)}</span></div>
-                  <div class="flex justify-between text-slate-500"><span>IVA tributado:</span><span class="font-mono">${formatCop(invoice.iva)}</span></div>
-                  <div class="flex justify-between font-bold text-sm pt-2 border-t border-stone-400">
+                  <div class="flex justify-between text-brand-steel"><span>IVA tributado:</span><span class="font-mono">${formatCop(invoice.iva)}</span></div>
+                  <div class="flex justify-between font-bold text-sm pt-2 border-t border-slate-400">
                     <span>Total Cancelado:</span><span class="font-mono">${formatCop(invoice.total)}</span>
                   </div>
                 </div>
 
-                <div class="text-center text-[10px] text-slate-400 mt-10 border-t border-dashed border-stone-200 pt-4 leading-normal">
+                <div class="text-center text-[10px] text-slate-400 mt-10 border-t border-dashed border-slate-200 pt-4 leading-normal">
                   Este documento se asimila a todos sus efectos legales a una Letra de Cambio.<br>
                   Establecido bajo el Art. 774 del Código de Comercio colombiano.
                 </div>
@@ -1469,31 +1452,19 @@
         }
 
         function drawUI() {
-          const fullContent = `
-            <div class="flex justify-center gap-2 mb-4 bg-stone-100 p-2 rounded-lg shrink-0">
-              <button id="btnSelectThermal" class="px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'thermal' ? 'bg-brand-ink text-white shadow' : 'bg-white text-slate-600'}">Formato Térmico (80mm)</button>
-              <button id="btnSelectLetter" class="px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'letter' ? 'bg-brand-ink text-white shadow' : 'bg-white text-slate-600'}">Formato Carta (A4)</button>
-            </div>
-            <div id="printPreview" class="flex-1 overflow-y-auto max-h-[50vh] p-2 bg-stone-100 rounded-lg flex items-center justify-center">
-              ${generateInvoiceMarkup(selectedFormat)}
-            </div>
-          `;
-
           openModal(`Imprenta de Factura #${invoice.consecutivo}`, drawUIHtml(), [
-            { text: 'Anular Factura', class: 'bg-red-100 text-red-700 hover:bg-red-200', callback: function() {
+            { text: 'Anular Factura', class: 'bg-red-100 text-red-700 hover:bg-red-200 font-bold', callback: function() {
               if (invoice.estado === 'Anulada') {
-                showToast('Esta factura ya ha sido anulada con anterioridad.', 'err');
+                showToast('Esta factura ya ha sido anulada.', 'err');
                 return false;
               }
-              openModal('Confirmación', `¿Está seguro de anular la factura ${DB.config.prefijo}-${invoice.consecutivo}? Los inventarios se restaurarán y la cartera volverá a su estado original.`, [
-                { text: 'Anular', class: 'bg-red-600 text-white hover:bg-red-700', callback: function() {
+              openModal('Confirmación de Anulación', `¿Está seguro de anular la factura ${DB.config.prefijo}-${invoice.consecutivo}? Se restaurarán los stocks físicos de inventario y se descontará de cartera si aplica.`, [
+                { text: 'Proceder Anulación', class: 'bg-red-600 text-white hover:bg-red-700', callback: function() {
                   invoice.estado = 'Anulada';
-                  // Restaurar stock
                   invoice.items.forEach(item => {
                     const p = DB.products.find(prod => prod.id === item.productoId);
                     if (p) p.stock += item.cantidad;
                   });
-                  // Descontar saldo en cartera si era crédito
                   if (invoice.metodoPago === 'Crédito cliente') {
                     const cli = getCustomer(invoice.clienteId);
                     if (cli) cli.balance = Math.max(0, (cli.balance || 0) - invoice.total);
@@ -1503,17 +1474,17 @@
                   renderViewModule('facturas');
                   return true;
                 }},
-                { text: 'Volver', class: 'bg-stone-200' }
+                { text: 'Cancelar', class: 'bg-slate-200' }
               ]);
               return false;
             }},
-            { text: 'Imprimir', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white', callback: function() {
+            { text: 'Imprimir', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white font-bold', callback: function() {
               const printArea = document.getElementById('printArea');
-              printArea.innerHTML = document.getElementById('printPreview').innerHTML;
+              printArea.innerHTML = document.getElementById('printPreviewContainer').innerHTML;
               window.print();
               return true;
             }},
-            { text: 'Cerrar', class: 'bg-stone-200 text-slate-600' }
+            { text: 'Cerrar', class: 'bg-slate-200 text-slate-600 font-bold' }
           ], true);
 
           document.getElementById('btnSelectThermal').onclick = () => { selectedFormat = 'thermal'; reDraw(); };
@@ -1522,19 +1493,19 @@
 
         function drawUIHtml() {
           return `
-            <div class="flex justify-center gap-2 mb-4 bg-stone-100 p-2 rounded-lg shrink-0">
-              <button id="btnSelectThermal" class="px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'thermal' ? 'bg-brand-ink text-white shadow' : 'bg-white text-slate-600'}">Ticket Térmico (80mm)</button>
-              <button id="btnSelectLetter" class="px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'letter' ? 'bg-brand-ink text-white shadow' : 'bg-white text-slate-600'}">Tamaño Carta (A4)</button>
+            <div class="flex justify-center gap-2 mb-4 bg-slate-100 p-2 rounded-lg shrink-0">
+              <button id="btnSelectThermal" class="px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'thermal' ? 'bg-brand-accent text-white shadow' : 'bg-white text-slate-600'}">Ticket Térmico (80mm)</button>
+              <button id="btnSelectLetter" class="px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'letter' ? 'bg-brand-accent text-white shadow' : 'bg-white text-slate-600'}">Tamaño Carta (A4)</button>
             </div>
-            <div id="printPreviewContainer" class="p-4 bg-stone-100 rounded-lg flex items-center justify-center overflow-auto custom-scrollbar">
+            <div id="printPreviewContainer" class="p-4 bg-slate-100 rounded-lg flex items-center justify-center overflow-auto custom-scrollbar">
               ${generateInvoiceMarkup(selectedFormat)}
             </div>
           `;
         }
 
         function reDraw() {
-          document.getElementById('btnSelectThermal').className = `px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'thermal' ? 'bg-brand-ink text-white shadow' : 'bg-white text-slate-600'}`;
-          document.getElementById('btnSelectLetter').className = `px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'letter' ? 'bg-brand-ink text-white shadow' : 'bg-white text-slate-600'}`;
+          document.getElementById('btnSelectThermal').className = `px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'thermal' ? 'bg-brand-accent text-white shadow' : 'bg-white text-slate-600'}`;
+          document.getElementById('btnSelectLetter').className = `px-4 py-1.5 text-xs font-bold rounded-lg transition ${selectedFormat === 'letter' ? 'bg-brand-accent text-white shadow' : 'bg-white text-slate-600'}`;
           document.getElementById('printPreviewContainer').innerHTML = generateInvoiceMarkup(selectedFormat);
         }
 
@@ -1566,7 +1537,7 @@
 
         container.innerHTML = `
           <table class="w-full text-sm text-left">
-            <thead class="bg-stone-50 text-slate-500 font-bold uppercase text-xs tracking-wider border-b border-stone-200">
+            <thead class="bg-slate-50 text-brand-steel font-bold uppercase text-xs tracking-wider border-b border-brand-border">
               <tr>
                 <th class="py-3 px-4">Consecutivo</th>
                 <th class="py-3 px-4">Fecha</th>
@@ -1577,21 +1548,21 @@
                 <th class="py-3 px-4 text-right">Acción</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-stone-100 bg-white text-slate-700">
+            <tbody class="divide-y divide-slate-100 bg-white text-slate-700">
               ${filtered.map(f => `
-                <tr class="hover:bg-stone-50">
+                <tr class="hover:bg-slate-50">
                   <td class="py-3 px-4 font-mono font-bold text-brand-accent">${DB.config.prefijo}-${f.consecutivo}</td>
-                  <td class="py-3 px-4">${f.fecha}</td>
-                  <td class="py-3 px-4 font-medium">${getCustomer(f.clienteId).nombre}</td>
-                  <td class="py-3 px-4">${f.metodoPago}</td>
+                  <td class="py-3 px-4 text-brand-steel font-medium">${f.fecha}</td>
+                  <td class="py-3 px-4 font-bold text-brand-ink">${getCustomer(f.clienteId).nombre}</td>
+                  <td class="py-3 px-4 font-semibold">${f.metodoPago}</td>
                   <td class="py-3 px-4">
                     <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
                       f.estado === 'Pagada' ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-600'
                     }">${f.estado}</span>
                   </td>
-                  <td class="py-3 px-4 text-right font-mono font-bold">${formatCop(f.total)}</td>
+                  <td class="py-3 px-4 text-right font-mono font-bold text-brand-ink">${formatCop(f.total)}</td>
                   <td class="py-3 px-4 text-right">
-                    <button class="bg-stone-100 hover:bg-stone-200 text-brand-ink text-xs font-semibold px-3 py-1 rounded-lg transition" onclick="viewInvoiceDetails(${f.id})">Detalles</button>
+                    <button class="bg-slate-100 hover:bg-slate-200 text-brand-ink text-xs font-bold px-3 py-1 rounded-lg transition" onclick="viewInvoiceDetails(${f.id})">Detalles</button>
                   </td>
                 </tr>
               `).join('')}
@@ -1613,7 +1584,6 @@
         const catFilter = document.getElementById('invCatFilter').value;
         const container = document.getElementById('inventarioTable');
 
-        // Llenar selector de categorías si está vacío
         const selectCat = document.getElementById('invCatFilter');
         if (selectCat.children.length === 0) {
           selectCat.innerHTML = '<option value="">Categorías</option>';
@@ -1642,7 +1612,7 @@
 
         container.innerHTML = `
           <table class="w-full text-sm text-left">
-            <thead class="bg-stone-50 text-slate-500 font-bold uppercase text-xs tracking-wider border-b border-stone-200">
+            <thead class="bg-slate-50 text-brand-steel font-bold uppercase text-xs tracking-wider border-b border-brand-border">
               <tr>
                 <th class="py-3 px-4">Código / EAN</th>
                 <th class="py-3 px-4">Detalle Comercial</th>
@@ -1653,24 +1623,24 @@
                 <th class="py-3 px-4 text-right">Acción</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-stone-100 bg-white text-slate-700">
+            <tbody class="divide-y divide-slate-100 bg-white text-slate-700">
               ${filtered.map(p => {
                 let stockClass = 'bg-emerald-50 text-emerald-700';
                 if (p.stock <= 0) stockClass = 'bg-red-50 text-red-600 font-bold';
                 else if (p.stock <= p.stockMin) stockClass = 'bg-amber-50 text-amber-700';
 
                 return `
-                  <tr class="hover:bg-stone-50">
+                  <tr class="hover:bg-slate-50">
                     <td class="py-3 px-4 font-mono font-bold text-slate-500">${p.codigo}</td>
-                    <td class="py-3 px-4 font-medium">${p.nombre}</td>
-                    <td class="py-3 px-4 text-xs">${getCategoryName(p.categoriaId)}</td>
+                    <td class="py-3 px-4 font-bold text-brand-ink">${p.nombre}</td>
+                    <td class="py-3 px-4 text-xs font-semibold text-brand-steel">${getCategoryName(p.categoriaId)}</td>
                     <td class="py-3 px-4 text-right font-mono text-slate-500">${formatCop(p.precioCompra)}</td>
                     <td class="py-3 px-4 text-right font-mono font-bold text-brand-accent">${formatCop(p.precioVenta)}</td>
                     <td class="py-3 px-4 text-right">
                       <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${stockClass}">${p.stock} ${p.unidad}s</span>
                     </td>
                     <td class="py-3 px-4 text-right space-x-1">
-                      <button class="bg-stone-100 hover:bg-stone-200 text-slate-700 text-xs font-bold px-2 py-1 rounded transition" onclick="editProductModal(${p.id})">Editar</button>
+                      <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-2 py-1 rounded transition" onclick="editProductModal(${p.id})">Editar</button>
                       <button class="bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded transition" onclick="deleteProduct(${p.id})">Eliminar</button>
                     </td>
                   </tr>
@@ -1688,54 +1658,54 @@
         let catOpts = DB.categories.map(c => `<option value="${c.id}">${c.nombre}</option>`).join('');
 
         const form = `
-          <div class="space-y-4">
+          <div class="space-y-4 text-left">
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Código de Barras *</label>
-                <input id="pCod" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: 770123...">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Código de Barras *</label>
+                <input id="pCod" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 font-bold focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: 770123...">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Descripción del Artículo *</label>
-                <input id="pNom" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: Tubo galvanizado">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Descripción del Artículo *</label>
+                <input id="pNom" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: Tubo galvanizado">
               </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Categoría *</label>
-                <select id="pCat" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">${catOpts}</select>
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Categoría *</label>
+                <select id="pCat" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">${catOpts}</select>
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Unidad Comercial *</label>
-                <select id="pUni" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Unidad Comercial *</label>
+                <select id="pUni" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">
                   <option>Unidad</option><option>Metro</option><option>Galón</option><option>Caja</option><option>Par</option><option>Bolsa</option>
                 </select>
               </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Costo Adquisición *</label>
-                <input id="pCosto" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Costo Adquisición *</label>
+                <input id="pCosto" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Precio de Venta (POS) *</label>
-                <input id="pVenta" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Precio de Venta (POS) *</label>
+                <input id="pVenta" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">
               </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Inventario Inicial</label>
-                <input id="pStock" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="0">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Inventario Inicial</label>
+                <input id="pStock" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="0">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alerta Stock Mínimo</label>
-                <input id="pMin" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="5">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Alerta Stock Mínimo</label>
+                <input id="pMin" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="5">
               </div>
             </div>
           </div>
         `;
 
         openModal('Registrar Nuevo Producto', form, [
-          { text: 'Registrar', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white', callback: function() {
+          { text: 'Registrar', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white font-bold', callback: function() {
             const cod = document.getElementById('pCod').value.trim();
             const nom = document.getElementById('pNom').value.trim();
             const cat = parseInt(document.getElementById('pCat').value);
@@ -1746,7 +1716,7 @@
             const min = parseFloat(document.getElementById('pMin').value) || 0;
 
             if (!cod || !nom || cos <= 0 || ven <= 0) {
-              showToast('Complete todos los campos obligatorios correctamente.', 'err');
+              showToast('Complete todos los campos obligatorios.', 'err');
               return false;
             }
 
@@ -1765,7 +1735,7 @@
             renderInventarioTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200 text-slate-600' }
+          { text: 'Cancelar', class: 'bg-slate-200 text-slate-700' }
         ]);
       };
 
@@ -1778,52 +1748,52 @@
         `).join('');
 
         const form = `
-          <div class="space-y-4">
+          <div class="space-y-4 text-left">
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Código de Barras</label>
-                <input id="pCod" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-100 font-bold" value="${p.codigo}" readonly>
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Código de Barras</label>
+                <input id="pCod" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-100 font-bold" value="${p.codigo}" readonly>
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nombre Comercial *</label>
-                <input id="pNom" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${p.nombre}">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Nombre Comercial *</label>
+                <input id="pNom" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" value="${p.nombre}">
               </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Categoría</label>
-                <select id="pCat" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">${catOpts}</select>
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Categoría</label>
+                <select id="pCat" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">${catOpts}</select>
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Unidad Comercial</label>
-                <input id="pUni" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${p.unidad}">
-              </div>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Costo Compra *</label>
-                <input id="pCosto" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${p.precioCompra}">
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Precio POS *</label>
-                <input id="pVenta" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${p.precioVenta}">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Unidad Comercial</label>
+                <input id="pUni" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="${p.unidad}">
               </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Existencia Real</label>
-                <input id="pStock" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${p.stock}">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Costo Compra *</label>
+                <input id="pCosto" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="${p.precioCompra}">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alerta Stock Mínimo</label>
-                <input id="pMin" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${p.stockMin}">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Precio POS *</label>
+                <input id="pVenta" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="${p.precioVenta}">
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Existencia Real</label>
+                <input id="pStock" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="${p.stock}">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Alerta Stock Mínimo</label>
+                <input id="pMin" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="${p.stockMin}">
               </div>
             </div>
           </div>
         `;
 
         openModal('Editar Producto', form, [
-          { text: 'Guardar Cambios', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white', callback: function() {
+          { text: 'Guardar Cambios', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white font-bold', callback: function() {
             const nom = document.getElementById('pNom').value.trim();
             const cat = parseInt(document.getElementById('pCat').value);
             const uni = document.getElementById('pUni').value.trim();
@@ -1833,7 +1803,7 @@
             const min = parseFloat(document.getElementById('pMin').value) || 0;
 
             if (!nom || cos <= 0 || ven <= 0 || !uni) {
-              showToast('Rellene todos los campos obligatorios correctamente.', 'err');
+              showToast('Rellene todos los campos obligatorios.', 'err');
               return false;
             }
 
@@ -1845,13 +1815,13 @@
             renderInventarioTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200 text-slate-700' }
         ]);
       };
 
       window.deleteProduct = function(id) {
         openModal('Eliminar Producto', '¿Está totalmente seguro de borrar este producto de sus bases de datos?', [
-          { text: 'Eliminar definitivamente', class: 'bg-red-600 hover:bg-red-700 text-white', callback: function() {
+          { text: 'Eliminar definitivamente', class: 'bg-red-600 hover:bg-red-700 text-white font-bold', callback: function() {
             const idx = DB.products.findIndex(p => p.id === id);
             if (idx !== -1) {
               DB.products.splice(idx, 1);
@@ -1861,7 +1831,7 @@
             }
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200' }
         ]);
       };
 
@@ -1869,7 +1839,7 @@
         const container = document.getElementById('categoriasTable');
         container.innerHTML = `
           <table class="w-full text-sm text-left">
-            <thead class="bg-stone-50 text-slate-500 font-bold uppercase text-xs tracking-wider border-b border-stone-200">
+            <thead class="bg-slate-50 text-brand-steel font-bold uppercase text-xs tracking-wider border-b border-brand-border">
               <tr>
                 <th class="py-3 px-4">ID</th>
                 <th class="py-3 px-4">Categoría</th>
@@ -1877,16 +1847,16 @@
                 <th class="py-3 px-4 text-right">Acción</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-stone-100 bg-white">
+            <tbody class="divide-y divide-slate-100 bg-white">
               ${DB.categories.map(c => {
                 const totalLinked = DB.products.filter(p => p.categoriaId === c.id).length;
                 return `
-                  <tr class="hover:bg-stone-50 text-slate-700">
+                  <tr class="hover:bg-slate-50 text-slate-700">
                     <td class="py-3 px-4 font-mono">${c.id}</td>
-                    <td class="py-3 px-4 font-semibold">${c.nombre}</td>
-                    <td class="py-3 px-4"><span class="bg-stone-100 text-stone-700 text-xs px-2 py-0.5 rounded-full">${totalLinked} productos</span></td>
+                    <td class="py-3 px-4 font-semibold text-brand-ink">${c.nombre}</td>
+                    <td class="py-3 px-4"><span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-0.5 rounded-full font-bold">${totalLinked} productos</span></td>
                     <td class="py-3 px-4 text-right space-x-1">
-                      <button class="bg-stone-100 text-slate-700 text-xs px-2 py-1 rounded font-bold" onclick="editCategoryModal(${c.id})">Editar</button>
+                      <button class="bg-slate-100 text-slate-700 text-xs px-2 py-1 rounded font-bold" onclick="editCategoryModal(${c.id})">Editar</button>
                       <button class="bg-red-50 text-red-600 text-xs px-2 py-1 rounded font-bold" onclick="deleteCategory(${c.id})">Eliminar</button>
                     </td>
                   </tr>
@@ -1899,12 +1869,12 @@
 
       document.getElementById('btnAddCategoria').onclick = function() {
         openModal('Nueva Categoría', `
-          <div>
-            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nombre de la Categoría *</label>
-            <input id="cNom" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" placeholder="Ej: Material Eléctrico">
+          <div class="text-left">
+            <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Nombre de la Categoría *</label>
+            <input id="cNom" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: Material Eléctrico">
           </div>
         `, [
-          { text: 'Registrar', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white', callback: function() {
+          { text: 'Registrar', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white font-bold', callback: function() {
             const nom = document.getElementById('cNom').value.trim();
             if (!nom) {
               showToast('Nombre inválido.', 'err');
@@ -1917,7 +1887,7 @@
             renderCategoriasTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200 text-slate-700' }
         ]);
       };
 
@@ -1926,12 +1896,12 @@
         if (!c) return;
 
         openModal('Editar Categoría', `
-          <div>
-            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nombre de la Categoría *</label>
-            <input id="cNom" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${c.nombre}">
+          <div class="text-left">
+            <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Nombre de la Categoría *</label>
+            <input id="cNom" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none" value="${c.nombre}">
           </div>
         `, [
-          { text: 'Guardar', class: 'bg-brand-accent text-white', callback: function() {
+          { text: 'Guardar', class: 'bg-brand-accent text-white font-bold', callback: function() {
             const nom = document.getElementById('cNom').value.trim();
             if (!nom) return false;
             c.nombre = nom;
@@ -1940,13 +1910,13 @@
             renderCategoriasTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200 text-slate-700' }
         ]);
       };
 
       window.deleteCategory = function(id) {
         openModal('Eliminar Categoría', 'Al eliminar esta categoría, los productos enlazados quedarán marcados como sin categoría.', [
-          { text: 'Confirmar eliminación', class: 'bg-red-600 text-white', callback: function() {
+          { text: 'Confirmar eliminación', class: 'bg-red-600 text-white font-bold', callback: function() {
             const idx = DB.categories.findIndex(c => c.id === id);
             if (idx !== -1) {
               DB.categories.splice(idx, 1);
@@ -1956,7 +1926,7 @@
             }
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200' }
         ]);
       };
 
@@ -1970,7 +1940,7 @@
 
         container.innerHTML = `
           <table class="w-full text-sm text-left">
-            <thead class="bg-stone-50 text-slate-500 font-bold uppercase text-xs tracking-wider border-b border-stone-200">
+            <thead class="bg-slate-50 text-brand-steel font-bold uppercase text-xs tracking-wider border-b border-brand-border">
               <tr>
                 <th class="py-3 px-4">Transacción</th>
                 <th class="py-3 px-4">Fecha</th>
@@ -1979,16 +1949,16 @@
                 <th class="py-3 px-4 text-right">Monto Total</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-stone-100 bg-white text-slate-700">
+            <tbody class="divide-y divide-slate-100 bg-white text-slate-700">
               ${[...DB.purchases].sort((a,b)=>b.id-a.id).map(p => {
-                const det = p.items.map(it => `${it.nombre} (${it.cantidad})`).join(', ');
+                const det = p.items.map(it => `${it.nombre || 'Art.'} (${it.cantidad})`).join(', ');
                 return `
-                  <tr class="hover:bg-stone-50">
-                    <td class="py-3 px-4 font-mono font-bold text-stone-500">COM-${p.id}</td>
-                    <td class="py-3 px-4">${p.fecha}</td>
-                    <td class="py-3 px-4 font-medium">${getSupplierName(p.proveedorId)}</td>
-                    <td class="py-3 px-4 truncate max-w-xs" title="${det}">${det}</td>
-                    <td class="py-3 px-4 text-right font-mono font-bold">${formatCop(p.total)}</td>
+                  <tr class="hover:bg-slate-50">
+                    <td class="py-3 px-4 font-mono font-bold text-slate-500">COM-${p.id}</td>
+                    <td class="py-3 px-4 text-brand-steel font-medium">${p.fecha}</td>
+                    <td class="py-3 px-4 font-bold text-brand-ink">${getSupplierName(p.proveedorId)}</td>
+                    <td class="py-3 px-4 truncate max-w-xs font-semibold text-slate-600" title="${det}">${det}</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-brand-ink">${formatCop(p.total)}</td>
                   </tr>
                 `;
               }).join('')}
@@ -2002,30 +1972,30 @@
         let prodOpts = DB.products.map(p => `<option value="${p.id}">${p.nombre} [Costo: ${formatCop(p.precioCompra)}]</option>`).join('');
 
         const form = `
-          <div class="space-y-4">
+          <div class="space-y-4 text-left">
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Proveedor Suministrador *</label>
-              <select id="comProv" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">${provOpts}</select>
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Proveedor Suministrador *</label>
+              <select id="comProv" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">${provOpts}</select>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Seleccionar Producto *</label>
-                <select id="comProd" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">${prodOpts}</select>
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Seleccionar Producto *</label>
+                <select id="comProd" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">${prodOpts}</select>
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Cantidad de Suministro *</label>
-                <input id="comCant" type="number" min="1" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="10">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Cantidad de Suministro *</label>
+                <input id="comCant" type="number" min="1" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" value="10">
               </div>
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Costo Unitario de Compra Actualizado *</label>
-              <input id="comCosto" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" placeholder="0">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Costo Unitario de Compra Actualizado *</label>
+              <input id="comCosto" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none" placeholder="0">
             </div>
           </div>
         `;
 
         openModal('Registrar Ingreso de Mercancía', form, [
-          { text: 'Registrar Entrada', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white', callback: function() {
+          { text: 'Registrar Entrada', class: 'bg-brand-accent hover:bg-brand-accent-dark text-white font-bold', callback: function() {
             const provId = parseInt(document.getElementById('comProv').value);
             const prodId = parseInt(document.getElementById('comProd').value);
             const cant = parseFloat(document.getElementById('comCant').value) || 0;
@@ -2039,7 +2009,7 @@
             const prod = DB.products.find(p => p.id === prodId);
             if (prod) {
               prod.stock += cant;
-              prod.precioCompra = costo; // Actualización automática del costo ponderado
+              prod.precioCompra = costo;
             }
 
             const total = cant * costo;
@@ -2057,7 +2027,7 @@
             renderComprasTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200' }
         ]);
       };
 
@@ -2081,7 +2051,7 @@
 
         container.innerHTML = `
           <table class="w-full text-sm text-left">
-            <thead class="bg-stone-50 text-slate-500 font-bold uppercase text-xs tracking-wider border-b border-stone-200">
+            <thead class="bg-slate-50 text-brand-steel font-bold uppercase text-xs tracking-wider border-b border-brand-border">
               <tr>
                 <th class="py-3 px-4">ID</th>
                 <th class="py-3 px-4">Nombre Comercial / Cliente</th>
@@ -2092,21 +2062,21 @@
                 <th class="py-3 px-4 text-right">Acciones</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-stone-100 bg-white text-slate-700">
+            <tbody class="divide-y divide-slate-100 bg-white text-slate-700">
               ${filtered.map(c => `
-                <tr class="hover:bg-stone-50">
-                  <td class="py-3 px-4 font-mono">${c.id}</td>
-                  <td class="py-3 px-4 font-semibold">${c.nombre}</td>
-                  <td class="py-3 px-4 font-mono">${c.documento}</td>
-                  <td class="py-3 px-4 text-xs">${c.telefono || 'Sin teléfono'}</td>
-                  <td class="py-3 px-4 text-right font-mono">${formatCop(c.creditLimit || 0)}</td>
+                <tr class="hover:bg-slate-50">
+                  <td class="py-3 px-4 font-mono text-brand-steel">${c.id}</td>
+                  <td class="py-3 px-4 font-bold text-brand-ink">${c.nombre}</td>
+                  <td class="py-3 px-4 font-mono font-semibold">${c.documento}</td>
+                  <td class="py-3 px-4 text-xs text-brand-steel font-medium">${c.telefono || 'Sin teléfono'}</td>
+                  <td class="py-3 px-4 text-right font-mono text-brand-steel">${formatCop(c.creditLimit || 0)}</td>
                   <td class="py-3 px-4 text-right font-mono font-bold ${
                     (c.balance || 0) > 0 ? 'text-red-600' : 'text-slate-500'
                   }">${formatCop(c.balance || 0)}</td>
                   <td class="py-3 px-4 text-right space-x-1">
                     ${(c.balance || 0) > 0 ? `<button class="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-[11px] font-bold px-2.5 py-1 rounded transition" onclick="abonarDeudaModal(${c.id})">Abonar</button>` : ''}
-                    <button class="bg-stone-100 text-slate-700 text-xs font-bold px-2 py-1 rounded transition" onclick="editClienteModal(${c.id})">Editar</button>
-                    <button class="bg-red-50 text-red-600 text-xs font-bold px-2 py-1 rounded transition" onclick="deleteCliente(${c.id})">Eliminar</button>
+                    <button class="bg-slate-100 text-slate-700 text-xs font-bold px-2 py-1 rounded transition hover:bg-slate-200" onclick="editClienteModal(${c.id})">Editar</button>
+                    <button class="bg-red-50 text-red-600 text-xs font-bold px-2 py-1 rounded transition hover:bg-red-100" onclick="deleteCliente(${c.id})">Eliminar</button>
                   </td>
                 </tr>
               `).join('')}
@@ -2119,40 +2089,40 @@
 
       document.getElementById('btnAddCliente').onclick = function() {
         const form = `
-          <div class="space-y-4">
+          <div class="space-y-4 text-left">
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nombre Completo / Razón Social *</label>
-              <input id="cNombre" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: John Doe">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Nombre Completo / Razón Social *</label>
+              <input id="cNombre" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: John Doe">
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Cédula o NIT *</label>
-              <input id="cDoc" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: 1040...">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Cédula o NIT *</label>
+              <input id="cDoc" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: 1040...">
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Teléfono</label>
-                <input id="cTel" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Teléfono</label>
+                <input id="cTel" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Límite de Crédito Autorizado</label>
-                <input id="cCredito" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="0">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Límite de Crédito Autorizado</label>
+                <input id="cCredito" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="0">
               </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Correo Electrónico</label>
-                <input id="cEmail" type="email" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Correo Electrónico</label>
+                <input id="cEmail" type="email" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Dirección Física</label>
-                <input id="cDir" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Dirección Física</label>
+                <input id="cDir" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">
               </div>
             </div>
           </div>
         `;
 
         openModal('Registrar Cliente en Cartera', form, [
-          { text: 'Crear Cliente', class: 'bg-brand-accent text-white', callback: function() {
+          { text: 'Crear Cliente', class: 'bg-brand-accent text-white font-bold hover:bg-brand-accent-dark', callback: function() {
             const nom = document.getElementById('cNombre').value.trim();
             const doc = document.getElementById('cDoc').value.trim();
             const tel = document.getElementById('cTel').value.trim();
@@ -2161,7 +2131,7 @@
             const cred = parseFloat(document.getElementById('cCredito').value) || 0;
 
             if (!nom || !doc) {
-              showToast('Campos obligatorios inconclusos.', 'err');
+              showToast('Campos obligatorios incompletos.', 'err');
               return false;
             }
 
@@ -2175,7 +2145,7 @@
             renderClientesTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200 text-slate-700' }
         ]);
       };
 
@@ -2184,21 +2154,21 @@
         if (!c) return;
 
         const form = `
-          <div class="space-y-3">
-            <p>Se registrará un abono a la cuenta del cliente <strong>${c.nombre}</strong>.</p>
-            <div class="p-3 bg-stone-100 rounded-lg space-y-1 text-xs">
-              <div class="flex justify-between"><span>Deuda Pendiente:</span><strong class="text-red-600">${formatCop(c.balance)}</strong></div>
-              <div class="flex justify-between"><span>Cupo de Crédito:</span><strong>${formatCop(c.creditLimit)}</strong></div>
+          <div class="space-y-3 text-left">
+            <p class="font-medium text-slate-700">Se registrará un abono a la cuenta de <strong>${c.nombre}</strong>.</p>
+            <div class="p-3 bg-slate-100 rounded-lg space-y-1 text-xs">
+              <div class="flex justify-between"><span>Deuda Pendiente:</span><strong class="text-red-600 font-mono">${formatCop(c.balance)}</strong></div>
+              <div class="flex justify-between"><span>Cupo de Crédito:</span><strong class="font-mono">${formatCop(c.creditLimit)}</strong></div>
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Monto de Pago Recibido ($) *</label>
-              <input id="mAbono" type="number" min="1" max="${c.balance}" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${c.balance}">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Monto de Pago Recibido ($) *</label>
+              <input id="mAbono" type="number" min="1" max="${c.balance}" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 font-bold font-mono focus:outline-none" value="${c.balance}">
             </div>
           </div>
         `;
 
         openModal('Registrar Recibo / Abono', form, [
-          { text: 'Procesar Abono', class: 'bg-emerald-600 hover:bg-emerald-700 text-white', callback: function() {
+          { text: 'Procesar Abono', class: 'bg-emerald-600 hover:bg-emerald-700 text-white font-bold', callback: function() {
             const monto = parseFloat(document.getElementById('mAbono').value) || 0;
             if (monto <= 0 || monto > c.balance) {
               showToast('Monto de abono inválido.', 'err');
@@ -2211,7 +2181,7 @@
             renderClientesTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200' }
         ]);
       };
 
@@ -2220,30 +2190,30 @@
         if (!c) return;
 
         const form = `
-          <div class="space-y-4">
+          <div class="space-y-4 text-left">
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nombre Comercial / Cliente *</label>
-              <input id="cNombre" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${c.nombre}">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Nombre Comercial / Cliente *</label>
+              <input id="cNombre" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none" value="${c.nombre}">
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Documento / NIT *</label>
-              <input id="cDoc" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${c.documento}">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Documento / NIT *</label>
+              <input id="cDoc" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none" value="${c.documento}">
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Teléfono</label>
-                <input id="cTel" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${c.telefono}">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Teléfono</label>
+                <input id="cTel" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="${c.telefono}">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Límite de Crédito</label>
-                <input id="cCredito" type="number" min="0" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${c.creditLimit}">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Límite de Crédito</label>
+                <input id="cCredito" type="number" min="0" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="${c.creditLimit}">
               </div>
             </div>
           </div>
         `;
 
         openModal('Editar Cliente', form, [
-          { text: 'Guardar Cambios', class: 'bg-brand-accent text-white', callback: function() {
+          { text: 'Guardar Cambios', class: 'bg-brand-accent text-white font-bold', callback: function() {
             const nom = document.getElementById('cNombre').value.trim();
             const doc = document.getElementById('cDoc').value.trim();
             const tel = document.getElementById('cTel').value.trim();
@@ -2257,7 +2227,7 @@
             renderClientesTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200' }
         ]);
       };
 
@@ -2267,7 +2237,7 @@
           return;
         }
         openModal('Eliminar Cliente', '¿Confirma que desea borrar este cliente de sus registros?', [
-          { text: 'Eliminar', class: 'bg-red-600 text-white', callback: function() {
+          { text: 'Eliminar', class: 'bg-red-600 text-white font-bold', callback: function() {
             const idx = DB.customers.findIndex(c => c.id === id);
             if (idx !== -1) {
               DB.customers.splice(idx, 1);
@@ -2277,7 +2247,7 @@
             }
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200' }
         ]);
       };
 
@@ -2301,7 +2271,7 @@
 
         container.innerHTML = `
           <table class="w-full text-sm text-left">
-            <thead class="bg-stone-50 text-slate-500 font-bold uppercase text-xs tracking-wider border-b border-stone-200">
+            <thead class="bg-slate-50 text-brand-steel font-bold uppercase text-xs tracking-wider border-b border-brand-border">
               <tr>
                 <th class="py-3 px-4">ID</th>
                 <th class="py-3 px-4">Razón Social</th>
@@ -2311,17 +2281,17 @@
                 <th class="py-3 px-4 text-right">Acciones</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-stone-100 bg-white text-slate-700">
+            <tbody class="divide-y divide-slate-100 bg-white text-slate-700">
               ${filtered.map(s => `
-                <tr class="hover:bg-stone-50">
-                  <td class="py-3 px-4 font-mono">${s.id}</td>
-                  <td class="py-3 px-4 font-semibold">${s.nombre}</td>
-                  <td class="py-3 px-4 font-mono">${s.nit}</td>
-                  <td class="py-3 px-4 text-xs">${s.telefono || 'Sin teléfono'}</td>
-                  <td class="py-3 px-4 text-xs">${s.direccion || 'Sin dirección'}</td>
+                <tr class="hover:bg-slate-50">
+                  <td class="py-3 px-4 font-mono text-brand-steel">${s.id}</td>
+                  <td class="py-3 px-4 font-bold text-brand-ink">${s.nombre}</td>
+                  <td class="py-3 px-4 font-mono font-semibold">${s.nit}</td>
+                  <td class="py-3 px-4 text-xs text-brand-steel font-medium">${s.telefono || 'Sin teléfono'}</td>
+                  <td class="py-3 px-4 text-xs text-brand-steel font-medium">${s.direccion || 'Sin dirección'}</td>
                   <td class="py-3 px-4 text-right space-x-1">
-                    <button class="bg-stone-100 text-slate-700 text-xs font-bold px-2 py-1 rounded transition" onclick="editProveedorModal(${s.id})">Editar</button>
-                    <button class="bg-red-50 text-red-600 text-xs font-bold px-2 py-1 rounded transition" onclick="deleteProveedor(${s.id})">Eliminar</button>
+                    <button class="bg-slate-100 text-slate-700 text-xs font-bold px-2 py-1 rounded transition hover:bg-slate-200" onclick="editProveedorModal(${s.id})">Editar</button>
+                    <button class="bg-red-50 text-red-600 text-xs font-bold px-2 py-1 rounded transition hover:bg-red-100" onclick="deleteProveedor(${s.id})">Eliminar</button>
                   </td>
                 </tr>
               `).join('')}
@@ -2334,30 +2304,30 @@
 
       document.getElementById('btnAddProveedor').onclick = function() {
         const form = `
-          <div class="space-y-4">
+          <div class="space-y-4 text-left">
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Razón Social o Nombre Comercial *</label>
-              <input id="sNombre" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" placeholder="Ej: Aceros S.A.">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Razón Social o Nombre Comercial *</label>
+              <input id="sNombre" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: Aceros S.A.">
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">NIT / ID Comercial *</label>
-              <input id="sNit" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" placeholder="Ej: 890...">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">NIT / ID Comercial *</label>
+              <input id="sNit" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-accent/30" placeholder="Ej: 890...">
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Teléfono</label>
-                <input id="sTel" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Teléfono</label>
+                <input id="sTel" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Dirección Fiscal</label>
-                <input id="sDir" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Dirección Fiscal</label>
+                <input id="sDir" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50">
               </div>
             </div>
           </div>
         `;
 
         openModal('Registrar Proveedor', form, [
-          { text: 'Registrar', class: 'bg-brand-accent text-white', callback: function() {
+          { text: 'Registrar', class: 'bg-brand-accent text-white font-bold hover:bg-brand-accent-dark', callback: function() {
             const nom = document.getElementById('sNombre').value.trim();
             const nit = document.getElementById('sNit').value.trim();
             const tel = document.getElementById('sTel').value.trim();
@@ -2372,7 +2342,7 @@
             renderProveedoresTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200' }
         ]);
       };
 
@@ -2381,30 +2351,30 @@
         if (!s) return;
 
         const form = `
-          <div class="space-y-4">
+          <div class="space-y-4 text-left">
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Razón Social *</label>
-              <input id="sNombre" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${s.nombre}">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Razón Social *</label>
+              <input id="sNombre" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none" value="${s.nombre}">
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">NIT / ID *</label>
-              <input id="sNit" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${s.nit}">
+              <label class="block text-xs font-bold text-brand-steel uppercase mb-1">NIT / ID *</label>
+              <input id="sNit" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50 focus:outline-none" value="${s.nit}">
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Teléfono</label>
-                <input id="sTel" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${s.telefono}">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Teléfono</label>
+                <input id="sTel" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="${s.telefono}">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Dirección Fiscal</label>
-                <input id="sDir" type="text" class="w-full p-2 border border-stone-200 rounded-lg text-sm bg-stone-50" value="${s.direccion}">
+                <label class="block text-xs font-bold text-brand-steel uppercase mb-1">Dirección Fiscal</label>
+                <input id="sDir" type="text" class="w-full p-2 border border-brand-border rounded-lg text-sm bg-slate-50" value="${s.direccion}">
               </div>
             </div>
           </div>
         `;
 
         openModal('Editar Proveedor', form, [
-          { text: 'Guardar', class: 'bg-brand-accent text-white', callback: function() {
+          { text: 'Guardar', class: 'bg-brand-accent text-white font-bold', callback: function() {
             const nom = document.getElementById('sNombre').value.trim();
             const nit = document.getElementById('sNit').value.trim();
             const tel = document.getElementById('sTel').value.trim();
@@ -2418,13 +2388,13 @@
             renderProveedoresTable();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200' }
         ]);
       };
 
       window.deleteProveedor = function(id) {
         openModal('Eliminar Proveedor', '¿Confirma eliminar este proveedor comercial?', [
-          { text: 'Remover definitivamente', class: 'bg-red-600 text-white', callback: function() {
+          { text: 'Remover definitivamente', class: 'bg-red-600 text-white font-bold', callback: function() {
             const idx = DB.suppliers.findIndex(s => s.id === id);
             if (idx !== -1) {
               DB.suppliers.splice(idx, 1);
@@ -2434,7 +2404,7 @@
             }
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200' }
         ]);
       };
 
@@ -2455,23 +2425,22 @@
           calculateAndDrawReports(sinceEl.value, toEl.value);
         };
 
-        // Impresión limpia de reporte corporativo
         document.getElementById('btnImprimirReporte').onclick = function() {
           const printArea = document.getElementById('printArea');
           printArea.innerHTML = `
             <div class="p-8 bg-white text-slate-800 font-sans text-xs">
-              <h2 class="text-xl font-bold uppercase border-b border-stone-300 pb-2">${DB.config.nombre}</h2>
-              <p class="text-slate-500 mt-1"><strong>NIT:</strong> ${DB.config.nit} · <strong>INFORME GERENCIAL COMERCIAL</strong></p>
+              <h2 class="text-xl font-bold uppercase border-b border-slate-300 pb-2">${DB.config.nombre}</h2>
+              <p class="text-slate-500 mt-1"><strong>NIT:</strong> ${DB.config.nit} · <strong>INFORME COMERCIAL DE NEGOCIO</strong></p>
               <p class="text-slate-500 mt-1"><strong>Período evaluado:</strong> Desde ${sinceEl.value} hasta ${toEl.value}</p>
               
-              <div class="grid grid-cols-2 gap-4 my-6 p-4 bg-stone-50 rounded-lg border border-stone-200">
+              <div class="grid grid-cols-2 gap-4 my-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
                 <div>
-                  <p class="text-stone-500">Monto Ventas en Período:</p>
-                  <strong class="text-lg font-bold text-slate-900">${document.getElementById('repTotalVentas').textContent}</strong>
+                  <p class="text-slate-500">Monto Ventas en Período:</p>
+                  <strong class="text-lg font-bold text-slate-900 font-mono">${document.getElementById('repTotalVentas').textContent}</strong>
                 </div>
                 <div>
-                  <p class="text-stone-500">Margen Comercial Estimado:</p>
-                  <strong class="text-lg font-bold text-emerald-600">${document.getElementById('repUtilidad').textContent}</strong>
+                  <p class="text-slate-500">Margen Comercial Estimado:</p>
+                  <strong class="text-lg font-bold text-emerald-600 font-mono">${document.getElementById('repUtilidad').textContent}</strong>
                 </div>
               </div>
 
@@ -2510,10 +2479,8 @@
             const venta = item.precio || 0;
             utilidadAcumulada += ((venta - compra) * item.cantidad);
 
-            // Conteo productos
             prodCounter[item.nombre] = (prodCounter[item.nombre] || 0) + item.cantidad;
 
-            // Conteo por Categoría
             const prodRef = DB.products.find(x => x.id === item.productoId);
             if (prodRef) {
               const catName = getCategoryName(prodRef.categoriaId);
@@ -2528,7 +2495,6 @@
         document.getElementById('repUnidades').textContent = `${totalUnidades} unidades despachadas`;
         document.getElementById('repUtilidad').textContent = formatCop(utilidadAcumulada);
 
-        // Renderizar Top Productos
         const topList = Object.entries(prodCounter).sort((a,b)=>b[1]-a[1]).slice(0, 5);
         const topDiv = document.getElementById('repTopProductos');
         if (topList.length === 0) {
@@ -2543,7 +2509,7 @@
                   <span class="truncate pr-4">${name}</span>
                   <span class="font-mono font-bold shrink-0">${qty} unids</span>
                 </div>
-                <div class="w-full bg-stone-100 rounded-full h-2">
+                <div class="w-full bg-slate-100 rounded-full h-2">
                   <div class="bg-brand-accent h-2 rounded-full transition-all duration-500" style="width: ${percentage}%;"></div>
                 </div>
               </div>
@@ -2551,7 +2517,6 @@
           }).join('<div class="h-3"></div>');
         }
 
-        // Ventas por categoría
         const catList = Object.entries(catSalesCounter).sort((a,b)=>b[1]-a[1]);
         const catDiv = document.getElementById('repVentasCategoria');
         if (catList.length === 0) {
@@ -2563,10 +2528,10 @@
             return `
               <div class="space-y-1">
                 <div class="flex justify-between text-xs font-semibold text-slate-700">
-                  <span class="truncate pr-4">${cat}</span>
-                  <span class="font-mono font-bold shrink-0">${formatCop(monto).replace('COP','').trim()}</span>
+                  <span class="truncate pr-4 font-bold text-brand-ink">${cat}</span>
+                  <span class="font-mono font-bold shrink-0 text-brand-steel">${formatCop(monto).replace('COP','').trim()}</span>
                 </div>
-                <div class="w-full bg-stone-100 rounded-full h-2">
+                <div class="w-full bg-slate-100 rounded-full h-2">
                   <div class="bg-brand-steel h-2 rounded-full transition-all duration-500" style="width: ${percentage}%;"></div>
                 </div>
               </div>
@@ -2607,8 +2572,8 @@
       };
 
       document.getElementById('btnResetDemo').onclick = function() {
-        openModal('Confirmación Crítica', '¿Seguro de restablecer todo el sistema a la versión de demostración? Esto borrará definitivamente las facturas y productos guardados en este navegador.', [
-          { text: 'Sí, Restablecer', class: 'bg-red-600 text-white', callback: function() {
+        openModal('Confirmación de Restauración', '¿Seguro de restablecer todo el sistema a la versión de demostración limpia? Se borrarán de forma definitiva todos tus cambios en este navegador.', [
+          { text: 'Sí, Restablecer', class: 'bg-red-600 text-white font-bold hover:bg-red-700', callback: function() {
             DB = getDemoData();
             saveDB();
             cart = [];
@@ -2616,11 +2581,10 @@
             document.querySelector('[data-view="dashboard"]').click();
             return true;
           }},
-          { text: 'Cancelar', class: 'bg-stone-200' }
+          { text: 'Cancelar', class: 'bg-slate-200 font-bold' }
         ]);
       };
 
-      // Exportación de Base de datos local a JSON
       document.getElementById('btnExportBackup').onclick = function() {
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(DB, null, 2));
         const dlAnchorElem = document.createElement('a');
@@ -2630,7 +2594,6 @@
         showToast('Copia de seguridad descargada.');
       };
 
-      // Importación segura con validador de esquema
       document.getElementById('btnTriggerImport').onclick = () => document.getElementById('fileImportBackup').click();
       document.getElementById('fileImportBackup').onchange = function(e) {
         const file = e.target.files[0];
@@ -2640,15 +2603,14 @@
         reader.onload = function(evt) {
           try {
             const imported = JSON.parse(evt.target.result);
-            // Validación de integridad básica del esquema de datos
             if (imported.config && imported.products && imported.invoices && imported.customers) {
               DB = imported;
               saveDB();
               cart = [];
-              showToast('Respaldo de base de datos restaurado de manera exitosa.');
+              showToast('Respaldo de base de datos restaurado.');
               location.reload();
             } else {
-              showToast('Formato JSON no compatible. Esquema SIGEF ausente.', 'err');
+              showToast('Formato JSON no compatible.', 'err');
             }
           } catch(err) {
             showToast('Archivo JSON corrupto o ilegible.', 'err');
@@ -2663,14 +2625,11 @@
         setDate();
         renderDashboard();
 
-        // Atajos de teclado profesionales POS
         window.onkeydown = function(e) {
-          // F2: Facturar
           if (e.key === 'F2') {
             e.preventDefault();
             document.getElementById('btnGenerarFactura').click();
           }
-          // F4: Enfocar buscador POS
           if (e.key === 'F4') {
             e.preventDefault();
             const search = document.getElementById('posSearch');
